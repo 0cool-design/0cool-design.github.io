@@ -130,7 +130,7 @@ p {
 }
 
 .hvr-shutter-in-horizontal:hover {
-    background: aqua;
+    background: #0059ff;
 }
 
 .mb-30 {
@@ -420,7 +420,7 @@ p {
     z-index: 99;
     opacity: 1;
     visibility: visible;
-    background: #fff;
+    background: #4b4a4a;
     box-shadow: 0px 0px 30px rgba(127, 137, 161, 0.25);
 }
 
@@ -501,7 +501,7 @@ p {
 
 .breadcrumbs {
     padding: 120px 0 0 0;
-    background-color: white;
+    background-color: #4b4a4a;
     min-height: 40px;
 }
 
@@ -565,7 +565,7 @@ p {
 #about {
     width: 100%;
     height: auto;
-    background: #f7f7f7;
+    background: #4b4a4a;
     padding-top: 120px;
 }
 
@@ -602,7 +602,7 @@ p {
 --------------------------------------------------------------*/
 
 #services {
-    background: #f7f7f7;
+    background: #4b4a4a;
     position: relative;
     padding-bottom: 80px;
 }
@@ -638,7 +638,7 @@ p {
 .services-slider .swiper-pagination .swiper-pagination-bullet {
     width: 12px;
     height: 12px;
-    background-color: #fff;
+    background-color: #4b4a4a;
     opacity: 1;
     border: 1px solid aqua;
 }
@@ -762,7 +762,7 @@ p {
 .portfolio-details .portfolio-details-slider .swiper-pagination .swiper-pagination-bullet {
     width: 12px;
     height: 12px;
-    background-color: #fff;
+    background-color: #4b4a4a;
     opacity: 1;
     border: 1px solid aqua;
 }
@@ -817,7 +817,7 @@ p {
 #journal-blog {
     height: auto;
     width: 100%;
-    background: #f7f7f7;
+    background: #4b4a4a;
     padding-bottom: 60px;
     position: relative;
 }
@@ -923,7 +923,7 @@ p {
 
 .php-email-form .loading {
     display: none;
-    background: #fff;
+    background: #4b4a4a;
     text-align: center;
     padding: 15px;
     margin-bottom: 15px;
@@ -1295,7 +1295,8 @@ blockquote {
 --------------------------------------------------------------*/
 
 #footer {
-    background: #f7f7f7;
+    background: rgb(0, 255, 255);
+    background: linear-gradient(0deg, rgba(0, 255, 255, 1) 0%, rgba(75, 74, 74, 1) 8%);
     padding-top: 50px;
     padding-bottom: 50px;
 }
@@ -1318,7 +1319,7 @@ blockquote {
 
 #footer .socials-media ul li a {
     font-size: 24px;
-    color: #999;
+    color: aqua;
     letter-spacing: 0.1em;
     font-weight: 500;
     background: transparent;
@@ -1337,6 +1338,7 @@ blockquote {
     font-weight: 500;
     margin-top: 0;
     text-transform: uppercase;
+    color: aqua;
 }
 
 
