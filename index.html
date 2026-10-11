@@ -79,7 +79,7 @@
                 <ul>
                     <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
                     <li><a class="nav-link scrollto" href="#about">About</a></li>
-                    <li><a class="nav-link  scrollto" href="#portfolio">Certificates</a></li>
+                    <li><a class="nav-link  scrollto" href="#research">Research</a></li>
                     <li><a class="nav-link  scrollto" href="#journal">Blog</a></li>
                     <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
                 </ul>
@@ -114,77 +114,105 @@
 
 
 
-        <!-- ======= Portfolio Section ======= -->
-        <div id="portfolio" class="paddsection reveal">
+        <!-- ======= Research Section ======= -->
+        <div id="research" class="text-left paddsection reveal">
 
             <div class="container">
                 <div class="section-title text-center">
-                    <h2 style="font-family:rog;">My Certificate</h2>
+                    <h2 style="font-family:rog;">Research &amp; Experiments</h2>
                 </div>
             </div>
 
             <div class="container">
+                <div class="journal-block">
 
-                <div class="row">
-                    <div class="col-lg-12 d-flex justify-content-center">
-                        <ul id="portfolio-flters">
-                            <li data-filter="*" class="filter-active">All</li>
-                            <li data-filter=".filter-cyber">CyberSecurity</li>
-                            <li data-filter=".filter-prog">Programming</li>
-                            <li data-filter=".filter-academic">Academic</li>
-                        </ul>
+                    <!-- Featured: Cicada 3301 -->
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="journal-info">
+                                <div class="journal-txt">
+                                    <em class="bi bi-incognito" style="font-size:40px; color:aqua;"></em>
+                                    <h4><a href="#research">Cicada 3301</a></h4>
+                                    <p>
+                                        An ongoing study of Cicada 3301 &mdash; the anonymous cryptographic puzzle
+                                        series that first appeared in 2012. My notes work through its layered
+                                        challenges: steganography in images, book and runic ciphers (the
+                                        <em>Liber Primus</em> and its Gematria), PGP-signed verification, and the
+                                        OSINT trail across clearnet and Tor hidden services. A case study in how
+                                        classical cryptography, hidden data, and open-source intelligence combine
+                                        into one of the hardest puzzles ever published.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
+
+                    <!-- Experiments grid -->
+                    <div class="row">
+
+                        <div class="col-lg-4 col-md-6">
+                            <div class="journal-info">
+                                <div class="journal-txt">
+                                    <em class="bi bi-eye" style="font-size:34px; color:aqua;"></em>
+                                    <h4><a href="https://github.com/0cool-design/stereogram-analyzer" target="_blank" rel="noopener">Stereogram Analyzer</a></h4>
+                                    <p>Recovering hidden depth maps and 3D point clouds from autostereograms
+                                       (Magic Eye images) &mdash; period estimation, block-matching depth, and a
+                                       live in-browser viewer.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-4 col-md-6">
+                            <div class="journal-info">
+                                <div class="journal-txt">
+                                    <em class="bi bi-box" style="font-size:34px; color:aqua;"></em>
+                                    <h4><a href="https://github.com/0cool-design/gyroid" target="_blank" rel="noopener">Gyroid</a></h4>
+                                    <p>Generating the gyroid &mdash; a triply-periodic minimal surface with zero
+                                       mean curvature that tiles space infinitely without self-intersecting.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-4 col-md-6">
+                            <div class="journal-info">
+                                <div class="journal-txt">
+                                    <em class="bi bi-infinity" style="font-size:34px; color:aqua;"></em>
+                                    <h4><a href="https://github.com/0cool-design/Pi_BIG-O" target="_blank" rel="noopener">&pi; &amp; Big-O</a></h4>
+                                    <p>Computing &pi; from the Leibniz series while streaming the running
+                                       time-complexity live &mdash; a hands-on playground for Big-O intuition.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-4 col-md-6">
+                            <div class="journal-info">
+                                <div class="journal-txt">
+                                    <em class="bi bi-key" style="font-size:34px; color:aqua;"></em>
+                                    <h4><a href="https://github.com/0cool-design/Totient" target="_blank" rel="noopener">Euler's Totient</a></h4>
+                                    <p>Exploring Euler's totient function &phi;(n) &mdash; the number-theory
+                                       backbone behind RSA key generation and modular arithmetic.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-4 col-md-6">
+                            <div class="journal-info">
+                                <div class="journal-txt">
+                                    <em class="bi bi-flag" style="font-size:34px; color:aqua;"></em>
+                                    <h4><a href="https://github.com/0cool-design/WriteUps" target="_blank" rel="noopener">CTF Write-ups</a></h4>
+                                    <p>Solutions and notes from capture-the-flag challenges &mdash; web, binary,
+                                       crypto, and forensics.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
                 </div>
-
-                <div class="row portfolio-container">
-
-                    <div class="col-lg-4 col-md-6 portfolio-item filter-cyber">
-                        <img src="assets/img/portfolio/ejpt.jpg" class="img-fluid" alt="">
-                    </div>
-
-                    <div class="col-lg-4 col-md-6 portfolio-item filter-cyber">
-                        <img src="assets/img/portfolio/CSFPC.jpg" class="img-fluid" alt="">
-                    </div>
-
-                    <div class="col-lg-4 col-md-6 portfolio-item filter-cyber">
-                        <img src="assets/img/portfolio/THM-pre.png" class="img-fluid" alt="">
-                    </div>
-
-                    <div class="col-lg-4 col-md-6 portfolio-item filter-prog">
-                        <img src="assets/img/portfolio/hashcode_22.png" class="img-fluid" alt="">
-                    </div>
-
-                    <div class="col-lg-4 col-md-6 portfolio-item filter-cyber">
-                        <img src="assets/img/portfolio/husn_20.jpg" class="img-fluid" alt="">
-                    </div>
-
-                    <div class="col-lg-4 col-md-6 portfolio-item filter-prog">
-                        <img src="assets/img/portfolio/EV-C++.jpg" class="img-fluid" alt="">
-                    </div>
-
-                    <div class="col-lg-4 col-md-6 portfolio-item filter-prog">
-                        <img src="assets/img/portfolio/EV-RPi.jpg" class="img-fluid" alt="">
-                    </div>
-
-                    <div class="col-lg-4 col-md-6 portfolio-item filter-prog">
-                        <img src="assets/img/portfolio/EV-Python.jpg" class="img-fluid" alt="">
-                    </div>
-
-                    <div class="col-lg-4 col-md-6 portfolio-item filter-academic">
-                        <img src="assets/img/portfolio/ieee.jpg" class="img-fluid" alt="">
-                    </div>
-
-                    <div class="col-lg-4 col-md-6 portfolio-item filter-academic">
-                        <img src="assets/img/portfolio/icem_1.jpg" class="img-fluid" alt="">
-                    </div>
-
-
-                </div>
-
             </div>
 
         </div>
-        <!-- End Portfolio Section -->
+        <!-- End Research Section -->
 
         <!-- ======= Journal Section ======= -->
         <div id="journal" class="text-left paddsection reveal">
