@@ -63,6 +63,31 @@
             --darkreader-inline-bgimage: initial;
             --darkreader-inline-bgcolor: #1a1d1e;
         }
+
+        /* Research section */
+        #research { background: #4b4a4a; }
+        #research .journal-info { margin-bottom: 26px; }
+        #research .journal-txt h4 a { color: aqua; }
+        #research .journal-txt h4 a:hover { color: #44ff00; }
+        #research .journal-txt p { color: #d2d6d7; }
+
+        /* Blog cards */
+        #journal .journal-txt h4 a { color: aqua; }
+        #journal .journal-txt h4 a:hover { color: #44ff00; }
+        #journal .excerpt { color: #d2d6d7; }
+        #journal .post-tags { margin: 0 0 8px; padding: 0; list-style: none; }
+        #journal .post-tags li {
+            display: inline-block;
+            border: 1px solid rgba(0,255,255,.45);
+            color: aqua;
+            font-size: 10px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            padding: 2px 9px;
+            margin: 0 5px 5px 0;
+            border-radius: 20px;
+        }
+        #journal .repo-link { color: aqua; }
     </style>
 
 </head>
@@ -103,7 +128,6 @@
                     <li><a href="instagram.html"><em class="bi bi-instagram"></em></a></li>
                     <li><a href="linkedin.html"><em class="bi bi-linkedin"></em></a></li>
                     <li><a href="github.html"><em class="bi bi-github"></em></a></li>
-                    <li><a href="/assets/img/Hamood_AlSalmani's_CV.pdf"><em class="bi bi-download"></em></li>
                 </ul>
             </div>
         </div>
@@ -132,15 +156,19 @@
                             <div class="journal-info">
                                 <div class="journal-txt">
                                     <em class="bi bi-incognito" style="font-size:40px; color:aqua;"></em>
-                                    <h4><a href="#research">Cicada 3301</a></h4>
+                                    <h4><a href="blog-cicada.html">Cicada 3301 &mdash; Cracking the Liber Primus</a></h4>
                                     <p>
-                                        An ongoing study of Cicada 3301 &mdash; the anonymous cryptographic puzzle
-                                        series that first appeared in 2012. My notes work through its layered
-                                        challenges: steganography in images, book and runic ciphers (the
-                                        <em>Liber Primus</em> and its Gematria), PGP-signed verification, and the
-                                        OSINT trail across clearnet and Tor hidden services. A case study in how
-                                        classical cryptography, hidden data, and open-source intelligence combine
-                                        into one of the hardest puzzles ever published.
+                                        An evidence-based cryptanalysis of the Cicada 3301 <em>Liber Primus</em>.
+                                        I built a dependency-free C++ toolkit that reproduces every solved page
+                                        exactly, then used the Index of Coincidence and a battery of statistical
+                                        probes to show <em>why</em> the remaining ~57 pages resist attack &mdash;
+                                        identifying the cipher family, the 17&sigma; doublet-suppression signal, and
+                                        auditing the popular &ldquo;27&times;27 totient map&rdquo; proposal.
+                                    </p>
+                                    <p>
+                                        <a href="blog-cicada.html">Read the full write-up &rarr;</a>
+                                        &nbsp;&middot;&nbsp;
+                                        <a href="https://github.com/0cool-design/azdecrypt/tree/cicada" target="_blank" rel="noopener"><em class="bi bi-github"></em> Repo</a>
                                     </p>
                                 </div>
                             </div>
@@ -225,59 +253,71 @@
 
             <div class="container">
                 <div class="journal-block">
+
+                    <!-- Featured post -->
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="journal-info">
+                                <div class="journal-txt">
+                                    <ul class="post-tags">
+                                        <li>Cryptography</li>
+                                        <li>Cicada 3301</li>
+                                        <li>Cryptanalysis</li>
+                                        <li>C++</li>
+                                    </ul>
+                                    <h4><a href="blog-cicada.html">Cracking (and Not Cracking) Cicada 3301</a></h4>
+                                    <p class="excerpt">Reproducing the solved pages of the <em>Liber Primus</em> with a
+                                       small C++ toolkit, then using the Index of Coincidence and a battery of
+                                       statistical probes to prove why the remaining ~57 pages have resisted the
+                                       internet for over a decade &mdash; plus an evidence-based review of the popular
+                                       &ldquo;27&times;27 totient map&rdquo; solution.</p>
+                                    <p>
+                                        <a href="blog-cicada.html">Read the full write-up &rarr;</a>
+                                        &nbsp;&middot;&nbsp;
+                                        <a class="repo-link" href="https://github.com/0cool-design/azdecrypt/tree/cicada" target="_blank" rel="noopener"><em class="bi bi-github"></em> Repo</a>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Upcoming posts -->
                     <div class="row">
 
                         <div class="col-lg-4 col-md-6">
                             <div class="journal-info">
-
                                 <a href="soon.html"><img src="assets/img/blog-post-1.jpg" class="img-responsive" alt="img" width="720" height="400"></a>
-
-                        <div class="journal-txt">
-
-                            <h4><a href="soon.html">HOW I MADE WARDRIVEING RC CAR</a></h4>
-                            <p class="separator"> 🚗
-                            </p>
-
+                                <div class="journal-txt">
+                                    <h4><a href="soon.html">How I Made a Wardriving RC Car</a></h4>
+                                    <p class="separator">Coming soon 🚗</p>
+                                </div>
+                            </div>
                         </div>
 
-            </div>
-        </div>
+                        <div class="col-lg-4 col-md-6">
+                            <div class="journal-info">
+                                <a href="soon.html"><img src="assets/img/blog-post-2.jpg" class="img-responsive" alt="img" width="720" height="400"></a>
+                                <div class="journal-txt">
+                                    <h4><a href="soon.html">Detect WiFi Deauth Attacks</a></h4>
+                                    <p class="separator">Coming soon &middot; using ESP8266</p>
+                                </div>
+                            </div>
+                        </div>
 
-        <div class="col-lg-4 col-md-6">
-            <div class="journal-info">
+                        <div class="col-lg-4 col-md-6">
+                            <div class="journal-info">
+                                <a href="soon.html"><img src="assets/img/blog-post-3.jpg" class="img-responsive" alt="img" width="720" height="400"></a>
+                                <div class="journal-txt">
+                                    <h4><a href="soon.html">Infrared Hacking</a></h4>
+                                    <p class="separator">Coming soon &middot; with Arduino Uno</p>
+                                </div>
+                            </div>
+                        </div>
 
-                <a href="soon.html"><img src="assets/img/blog-post-2.jpg" class="img-responsive" alt="img" width="720" height="400"></a>
-
-                <div class="journal-txt">
-
-                    <h4><a href="soon.html">DETECT WIFI DEAUTH ATTACKS</a></h4>
-                    <p class="separator">using esp8266
-                    </p>
-
-                </div>
-
-            </div>
-        </div>
-
-        <div class="col-lg-4 col-md-6">
-            <div class="journal-info">
-
-                <a href="soon.html"><img src="assets/img/blog-post-3.jpg" class="img-responsive" alt="img" width="720" height="400"></a>
-
-                <div class="journal-txt">
-
-                    <h4><a href="soon.html">INFRARED HACKING</a></h4>
-                    <p class="separator">with arduino uno
-                    </p>
+                    </div>
 
                 </div>
-
             </div>
-        </div>
-
-    </div>
-    </div>
-    </div>
 
     </div>
     <!-- End Journal Section -->
@@ -357,7 +397,6 @@
                     <li><a href="instagram.html"><em class="bi bi-instagram"></em></a></li>
                     <li><a href="linkedin.html"><em class="bi bi-linkedin"></em></a></li>
                     <li><a href="github.html"><em class="bi bi-github"></em></a></li>
-                    <li><a href="/assets/img/Hamood_AlSalmani's_CV.pdf"><em class="bi bi-download"></em></a></li>
                 </ul>
 
             </div>
