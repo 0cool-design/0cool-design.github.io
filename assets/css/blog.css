@@ -234,3 +234,64 @@ figcaption { color: var(--ink-faint); font-size: 12.5px; font-style: italic; mar
     text-shadow: none;
 }
 .post .topback em { font-style: normal; }
+
+/* Write-up index cards */
+.wu-card {
+    background: var(--panel);
+    border: 1px solid var(--panel-brd);
+    border-radius: 16px;
+    padding: 22px 22px 18px;
+    margin-bottom: 24px;
+    height: calc(100% - 24px);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    transition: border-color .3s ease, box-shadow .3s ease, transform .3s ease;
+}
+.wu-card:hover {
+    border-color: rgba(61,245,255,0.5);
+    box-shadow: 0 14px 44px rgba(0,0,0,0.4);
+    transform: translateY(-3px);
+}
+.wu-card .wu-cat { color: var(--cyan); font-family: rog; letter-spacing: 1.5px; text-transform: uppercase; font-size: 11px; }
+.wu-card h3 { margin: 8px 0; }
+.wu-card h3 a { color: #eef8fa; font-size: 19px; font-weight: 600; }
+.wu-card h3 a:hover { color: var(--cyan); }
+.wu-card p { color: var(--ink-dim); font-size: 14.5px; line-height: 1.7; margin: 8px 0 14px; }
+.wu-card .wu-read { color: var(--cyan); font-size: 13px; letter-spacing: .5px; }
+
+/* ============================================================
+   LIGHT THEME
+   ============================================================ */
+html[data-theme="light"] {
+    --bg:        #eef1f5;
+    --ink:       #10161b;
+    --ink-dim:   #46535c;
+    --ink-faint: #76828b;
+    --cyan:      #0a8ea0;
+    --magenta:   #b81e9a;
+    --panel:     rgba(0,0,0,0.035);
+    --panel-brd: rgba(0,0,0,0.12);
+    --rule:      rgba(0,0,0,0.10);
+}
+html[data-theme="light"] body {
+    background:
+        radial-gradient(1100px 560px at 15% -8%, rgba(10,142,160,0.10), transparent 60%),
+        radial-gradient(900px 480px at 102% 2%, rgba(184,30,154,0.08), transparent 55%),
+        var(--bg);
+    color: var(--ink);
+}
+html[data-theme="light"] .post h1 { color: #0c1a24; text-shadow: none; }
+html[data-theme="light"] .post h2 { color: #0c1a24; }
+html[data-theme="light"] .post h2::before { box-shadow: none; }
+html[data-theme="light"] .post .kicker { text-shadow: none; }
+html[data-theme="light"] .post strong { color: #0c1a24; }
+html[data-theme="light"] .post a:hover { text-shadow: none; }
+html[data-theme="light"] blockquote { background: rgba(10,142,160,0.06); color: #0c3b42; }
+html[data-theme="light"] table.data tr:nth-child(even) td,
+html[data-theme="light"] table.data tbody tr:nth-child(even) td { background: rgba(0,0,0,0.03); }
+html[data-theme="light"] table.data tr.hl td { background: rgba(10,142,160,0.08); color: #0c3b42; }
+html[data-theme="light"] .wu-card h3 a { color: #0c1a24; }
+html[data-theme="light"] .wu-card:hover { box-shadow: 0 14px 40px rgba(0,0,0,0.12); border-color: rgba(10,142,160,0.5); }
+html[data-theme="light"] .topback,
+html[data-theme="light"] .backlink { border-color: rgba(10,142,160,0.5); }
+/* code blocks stay dark for contrast, which reads well on a light page */

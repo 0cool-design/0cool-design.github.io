@@ -30,6 +30,7 @@
 
     <!-- Template Main CSS File -->
     <link href="assets/css/style.css" rel="stylesheet">
+    <script src="assets/js/theme.js"></script>
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-WTGQ34JF5D"></script>
@@ -124,6 +125,39 @@
 
         /* Contact readability */
         #contact .contact-details a, #contact .contact-details span { color: #c6cdd0; }
+
+        /* ===== Light theme (homepage) ===== */
+        html[data-theme="light"] body { background: #eef1f5 !important; color: #10161b; }
+        html[data-theme="light"] #about, html[data-theme="light"] #research,
+        html[data-theme="light"] #journal, html[data-theme="light"] #contact {
+            background: #f3f5f8;
+            background-image:
+                radial-gradient(900px 440px at 12% -10%, rgba(10,142,160,.10), transparent 60%),
+                radial-gradient(820px 420px at 100% 0%, rgba(184,30,154,.08), transparent 55%);
+        }
+        html[data-theme="light"] .section-title h2 { color: #0c1a24 !important; text-shadow: none; }
+        html[data-theme="light"] #research .journal-info,
+        html[data-theme="light"] #journal .journal-info { background: rgba(0,0,0,.03); border-color: rgba(0,0,0,.12); }
+        html[data-theme="light"] #research .journal-txt h4 a,
+        html[data-theme="light"] #journal .journal-txt h4 a { color: #0c1a24; }
+        html[data-theme="light"] #research .journal-txt h4 a:hover,
+        html[data-theme="light"] #journal .journal-txt h4 a:hover { color: #0a8ea0; }
+        html[data-theme="light"] #research .journal-txt p,
+        html[data-theme="light"] #journal .excerpt { color: #46535c; }
+        html[data-theme="light"] #research .journal-txt p a,
+        html[data-theme="light"] #journal .journal-txt p a { color: #0a8ea0; }
+        html[data-theme="light"] #journal .post-tags li,
+        html[data-theme="light"] #research .post-tags li { background: rgba(10,142,160,.08); border-color: rgba(10,142,160,.4); color: #0a8ea0; }
+        html[data-theme="light"] #journal .repo-link,
+        html[data-theme="light"] #research .repo-link { color: #0a8ea0; }
+        html[data-theme="light"] #about .about-descr .p-heading { color: #0a8ea0 !important; text-shadow: none; }
+        html[data-theme="light"] #about .about-descr .separator,
+        html[data-theme="light"] #about .about-descr ul { color: #46535c !important; }
+        html[data-theme="light"] #about .div-img-bg { border-color: #0a8ea0 !important; box-shadow: 0 0 30px rgba(10,142,160,.18); }
+        html[data-theme="light"] #contact .contact-details a,
+        html[data-theme="light"] #contact .contact-details span { color: #46535c; }
+        html[data-theme="light"] #header { background: rgba(243,245,248,.92); }
+        html[data-theme="light"] #navbar a, html[data-theme="light"] #navbar .nav-link { color: #10161b; }
     </style>
 
 </head>
@@ -310,6 +344,18 @@
                             </div>
                         </div>
 
+                        <div class="col-lg-4 col-md-6">
+                            <div class="journal-info">
+                                <div class="journal-txt">
+                                    <em class="bi bi-fonts" style="font-size:34px; color:aqua;"></em>
+                                    <h4><a href="blog-sahtan.html">Wadi Al Sahtan Alphabet</a></h4>
+                                    <p>Digitising an ancient Omani rock-inscription alphabet as an installable
+                                       TrueType font, so a historical script can be typed in any application.</p>
+                                    <p><a href="blog-sahtan.html">Read &rarr;</a> &nbsp;&middot;&nbsp; <a href="https://github.com/0cool-design/Sahtan-alphabet" target="_blank" rel="noopener">Repo</a></p>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
 
                 </div>
@@ -411,6 +457,17 @@
                                     <h4><a href="blog-writeups.html">CTF Write-ups</a></h4>
                                     <p class="excerpt">Solutions and notes from capture-the-flag challenges, the approach, the trick, and the solve script.</p>
                                     <p><a href="blog-writeups.html">Read &rarr;</a> &nbsp;&middot;&nbsp; <a class="repo-link" href="https://github.com/0cool-design/WriteUps" target="_blank" rel="noopener">Repo</a></p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-4 col-md-6">
+                            <div class="journal-info">
+                                <div class="journal-txt">
+                                    <ul class="post-tags"><li>Typography</li><li>Heritage</li></ul>
+                                    <h4><a href="blog-sahtan.html">Wadi Al Sahtan Alphabet</a></h4>
+                                    <p class="excerpt">Digitising an ancient Omani rock-inscription alphabet as an installable TrueType font.</p>
+                                    <p><a href="blog-sahtan.html">Read &rarr;</a> &nbsp;&middot;&nbsp; <a class="repo-link" href="https://github.com/0cool-design/Sahtan-alphabet" target="_blank" rel="noopener">Repo</a></p>
                                 </div>
                             </div>
                         </div>

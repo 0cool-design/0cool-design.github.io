@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>CTF22: Escape Encoding and Strange Strings | CTF Write-up | 0cool</title>
+    <meta content="EOman CTF22: decoding decimal character codes and matching two Base64 files index by index." name="description">
+
+    <link rel="apple-touch-icon" sizes="144x144" href="assets/img/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32x32.png">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,300i,400,400i,500,500i,600,600i,700,700i|Playfair+Display:400,400i,500,500i,600,600i,700,700i,900,900i" rel="stylesheet">
+    <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="assets/css/style.css" rel="stylesheet">
+    <script src="assets/js/theme.js"></script>
+    <link href="assets/css/blog.css" rel="stylesheet">
+</head>
+
+<body>
+    <header id="header" class="fixed-top">
+        <div class="container d-flex align-items-center justify-content-between">
+            <h1 class="logo"><a href="index.html" style="font-family:HypersTechno; color:aqua;">0CO0L</a></h1>
+            <nav id="navbar" class="navbar">
+                <ul>
+                    <li><a class="nav-link" href="index.html#hero">Home</a></li>
+                    <li><a class="nav-link" href="index.html#about">About</a></li>
+                    <li><a class="nav-link" href="index.html#research">Research</a></li>
+                    <li><a class="nav-link" href="index.html#journal">Blog</a></li>
+                    <li><a class="nav-link" href="index.html#contact">Contact</a></li>
+                </ul>
+                <em class="bi bi-list mobile-nav-toggle"></em>
+            </nav>
+        </div>
+    </header>
+
+    <main id="main">
+        <article class="post">
+            <a class="topback" href="blog-writeups.html"><em class="bi bi-arrow-left"></em> All write-ups</a>
+
+            <p class="kicker">CTF Write-up &middot; Mixed</p>
+            <h1>CTF22: Escape Encoding and Strange Strings</h1>
+            <p class="lead">Two short sub-tasks from the EOman 2022 set: decoding decimal character codes, and matching two Base64-encoded files index by index.</p>
+
+            <ul class="tags">
+                <li>EOman 2022</li>
+                <li>Encoding</li>
+                <li>Base64</li>
+                <li>Python</li>
+            </ul>
+
+            <div class="meta">
+                <span>Source: <em>EOman 2022</em></span>
+                <span>Category: Mixed</span>
+            </div>
+
+            <h2>Escape encoding</h2>
+            <p>The flag is presented as a list of decimal character codes. Mapping each code to its character and joining the result recovers the plaintext.</p>
+            <pre>flag = [89, 111, 117, 71, 111, 116, 84, 104, 101, 70, 108, 64, 103]
+print("".join(map(chr, flag)))
+# YouGotTheFl@g</pre>
+
+            <h2>Strange strings</h2>
+            <p>Two Base64-encoded files are provided. Decoding both and keeping only the characters that agree at the same index in each file reconstructs the flag. Positions at which the two files differ are discarded.</p>
+            <pre>file1 = base64.b64decode(open('file1.txt').read()).decode('utf-8')
+file2 = base64.b64decode(open('file2.txt').read()).decode('utf-8')
+flag = "".join(file1[i] for i in range(len(file1)) if file1[i] == file2[i])
+print(flag)
+# Flag{YoU_DiD_GooD_MaTcHinG}</pre>
+
+            <a class="backlink" href="blog-writeups.html">&larr; Back to all write-ups</a>
+        </article>
+    </main>
+
+    <div id="footer" class="text-center">
+        <div class="container">
+            <div class="socials-media text-center">
+                <ul class="list-unstyled">
+                    <li><a href="twitter.html"><em class="bi bi-twitter"></em></a></li>
+                    <li><a href="instagram.html"><em class="bi bi-instagram"></em></a></li>
+                    <li><a href="linkedin.html"><em class="bi bi-linkedin"></em></a></li>
+                    <li><a href="github.html"><em class="bi bi-github"></em></a></li>
+                </ul>
+            </div>
+            <p>&copy; Hamood AlSalmani</p>
+        </div>
+    </div>
+
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><em class="bi bi-arrow-up-short"></em></a>
+    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/main.js"></script>
+</body>
+
+</html>

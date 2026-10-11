@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Postbase | CTF Write-up | 0cool</title>
+    <meta content="Cybertalents Postbase: recovering a corrupted Base64 prefix by enumeration." name="description">
+
+    <link rel="apple-touch-icon" sizes="144x144" href="assets/img/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32x32.png">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,300i,400,400i,500,500i,600,600i,700,700i|Playfair+Display:400,400i,500,500i,600,600i,700,700i,900,900i" rel="stylesheet">
+    <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="assets/css/style.css" rel="stylesheet">
+    <script src="assets/js/theme.js"></script>
+    <link href="assets/css/blog.css" rel="stylesheet">
+</head>
+
+<body>
+    <header id="header" class="fixed-top">
+        <div class="container d-flex align-items-center justify-content-between">
+            <h1 class="logo"><a href="index.html" style="font-family:HypersTechno; color:aqua;">0CO0L</a></h1>
+            <nav id="navbar" class="navbar">
+                <ul>
+                    <li><a class="nav-link" href="index.html#hero">Home</a></li>
+                    <li><a class="nav-link" href="index.html#about">About</a></li>
+                    <li><a class="nav-link" href="index.html#research">Research</a></li>
+                    <li><a class="nav-link" href="index.html#journal">Blog</a></li>
+                    <li><a class="nav-link" href="index.html#contact">Contact</a></li>
+                </ul>
+                <em class="bi bi-list mobile-nav-toggle"></em>
+            </nav>
+        </div>
+    </header>
+
+    <main id="main">
+        <article class="post">
+            <a class="topback" href="blog-writeups.html"><em class="bi bi-arrow-left"></em> All write-ups</a>
+
+            <p class="kicker">CTF Write-up &middot; Cryptography</p>
+            <h1>Postbase</h1>
+            <p class="lead">Recovering a corrupted Base64 prefix by enumerating the unknown leading characters against a known plaintext marker.</p>
+
+            <ul class="tags">
+                <li>Cybertalents</li>
+                <li>Cryptography</li>
+                <li>Base64</li>
+                <li>Brute Force</li>
+                <li>Python</li>
+            </ul>
+
+            <div class="meta">
+                <span>Source: <em>Cybertalents</em></span>
+                <span>Category: Cryptography</span>
+                <span>50 points</span>
+                <span>Easy</span>
+            </div>
+
+            <h2>Challenge</h2>
+            <p>The challenge supplies a string of letters and numbers and states only that it is not understood. The leading characters of the string are corrupted:</p>
+            <blockquote>R[corrupted]BR3tCNDUzXzYxWDdZXzRSfQ==</blockquote>
+
+            <h2>Analysis</h2>
+            <p>The trailing <code>==</code> padding and the restricted character set identify the data as Base64. The suffix is intact, but the first characters are unknown, so a direct decode fails. The decisive observation is that the plaintext is expected to begin with the token <code>FLAG</code>. This converts an unknown-prefix problem into a bounded search.</p>
+
+            <h2>Solution</h2>
+            <p>Candidate strings matching the known pattern are generated with <code>exrex</code>, each is decoded, and the single candidate whose decoded output begins with <code>FLAG</code> is accepted.</p>
+            <pre>#!/usr/bin/env python3
+import base64, exrex
+
+def Base64_D(base64_message):
+    message = base64.b64decode(base64_message.encode('ascii')).decode('ascii')
+    if message[:4].upper() == "FLAG":
+        print(message)
+
+if __name__ == "__main__":
+    B64hash = exrex.generate('R([A-Za-z0-9+])+BR3tCNDUzXzYxWDdZXzRSfQ==')
+    for i in B64hash:
+        try:
+            Base64_D(str(i))
+        except Exception:
+            pass</pre>
+            <p>The candidate that decodes to a string beginning with <code>FLAG</code> is the flag.</p>
+
+            <a class="backlink" href="blog-writeups.html">&larr; Back to all write-ups</a>
+        </article>
+    </main>
+
+    <div id="footer" class="text-center">
+        <div class="container">
+            <div class="socials-media text-center">
+                <ul class="list-unstyled">
+                    <li><a href="twitter.html"><em class="bi bi-twitter"></em></a></li>
+                    <li><a href="instagram.html"><em class="bi bi-instagram"></em></a></li>
+                    <li><a href="linkedin.html"><em class="bi bi-linkedin"></em></a></li>
+                    <li><a href="github.html"><em class="bi bi-github"></em></a></li>
+                </ul>
+            </div>
+            <p>&copy; Hamood AlSalmani</p>
+        </div>
+    </div>
+
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><em class="bi bi-arrow-up-short"></em></a>
+    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/main.js"></script>
+</body>
+
+</html>

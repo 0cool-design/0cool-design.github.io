@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Scattered | CTF Write-up | 0cool</title>
+    <meta content="EOman Scattered: recovering MD5-named image tiles and reassembling them into the flag image." name="description">
+
+    <link rel="apple-touch-icon" sizes="144x144" href="assets/img/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32x32.png">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,300i,400,400i,500,500i,600,600i,700,700i|Playfair+Display:400,400i,500,500i,600,600i,700,700i,900,900i" rel="stylesheet">
+    <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="assets/css/style.css" rel="stylesheet">
+    <script src="assets/js/theme.js"></script>
+    <link href="assets/css/blog.css" rel="stylesheet">
+</head>
+
+<body>
+    <header id="header" class="fixed-top">
+        <div class="container d-flex align-items-center justify-content-between">
+            <h1 class="logo"><a href="index.html" style="font-family:HypersTechno; color:aqua;">0CO0L</a></h1>
+            <nav id="navbar" class="navbar">
+                <ul>
+                    <li><a class="nav-link" href="index.html#hero">Home</a></li>
+                    <li><a class="nav-link" href="index.html#about">About</a></li>
+                    <li><a class="nav-link" href="index.html#research">Research</a></li>
+                    <li><a class="nav-link" href="index.html#journal">Blog</a></li>
+                    <li><a class="nav-link" href="index.html#contact">Contact</a></li>
+                </ul>
+                <em class="bi bi-list mobile-nav-toggle"></em>
+            </nav>
+        </div>
+    </header>
+
+    <main id="main">
+        <article class="post">
+            <a class="topback" href="blog-writeups.html"><em class="bi bi-arrow-left"></em> All write-ups</a>
+
+            <p class="kicker">CTF Write-up &middot; Cryptography</p>
+            <h1>Scattered</h1>
+            <p class="lead">Recovering image tiles that have been renamed to their MD5 digests, then reassembling them in grid order to reveal the flag.</p>
+
+            <ul class="tags">
+                <li>EOman 2022</li>
+                <li>Cryptography</li>
+                <li>MD5</li>
+                <li>Image Reassembly</li>
+                <li>Python</li>
+            </ul>
+
+            <div class="meta">
+                <span>Source: <em>EOman 2022</em></span>
+                <span>Category: Cryptography</span>
+                <span>80 points</span>
+                <span>Easy</span>
+            </div>
+
+            <h2>Challenge</h2>
+            <p>The flag is distributed across many image files inside a zip archive and must be reassembled into the correct order.</p>
+
+            <h2>Analysis</h2>
+            <p>Each file has been renamed to the MD5 hash of its true name, and the true names encode a grid position in the form <code>r x c</code>, a row and a column matching the regular expression <code>([0-9]x[0-9])</code>. Because that name space is extremely small, the hashes can be inverted by exhaustive search, after which the tiles can be placed into their grid positions.</p>
+
+            <h2>Solution</h2>
+            <p>Each file name is brute-forced back to its coordinate by hashing every candidate from the pattern until the digest matches:</p>
+            <pre>import os, hashlib, exrex, itertools
+from PIL import Image
+
+def md5_f(hash):
+    for i in itertools.count(1):
+        for s in exrex.generate('([0-9]x[0-9])'):
+            if hashlib.md5(s.encode('utf-8')).hexdigest() == hash:
+                return s</pre>
+            <p>Each file is renamed to its recovered <code>r x c .jpg</code> coordinate. The grid size and tile dimensions are read from the recovered names, a blank canvas of the full size is created, and every tile is pasted into its position, reconstructing the complete image and revealing the flag.</p>
+            <pre>for i in range(rows):
+    for j in range(cols):
+        file = str(i) + 'x' + str(j) + '.jpg'
+        if file in files:
+            img = Image.open(file)
+            result.paste(img, (j*width, i*height))
+
+result.show()</pre>
+
+            <a class="backlink" href="blog-writeups.html">&larr; Back to all write-ups</a>
+        </article>
+    </main>
+
+    <div id="footer" class="text-center">
+        <div class="container">
+            <div class="socials-media text-center">
+                <ul class="list-unstyled">
+                    <li><a href="twitter.html"><em class="bi bi-twitter"></em></a></li>
+                    <li><a href="instagram.html"><em class="bi bi-instagram"></em></a></li>
+                    <li><a href="linkedin.html"><em class="bi bi-linkedin"></em></a></li>
+                    <li><a href="github.html"><em class="bi bi-github"></em></a></li>
+                </ul>
+            </div>
+            <p>&copy; Hamood AlSalmani</p>
+        </div>
+    </div>
+
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><em class="bi bi-arrow-up-short"></em></a>
+    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/main.js"></script>
+</body>
+
+</html>

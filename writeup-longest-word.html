@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Longest Word | CTF Write-up | 0cool</title>
+    <meta content="EOman Longest Word: finding the longest token in an article file." name="description">
+
+    <link rel="apple-touch-icon" sizes="144x144" href="assets/img/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32x32.png">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,300i,400,400i,500,500i,600,600i,700,700i|Playfair+Display:400,400i,500,500i,600,600i,700,700i,900,900i" rel="stylesheet">
+    <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="assets/css/style.css" rel="stylesheet">
+    <script src="assets/js/theme.js"></script>
+    <link href="assets/css/blog.css" rel="stylesheet">
+</head>
+
+<body>
+    <header id="header" class="fixed-top">
+        <div class="container d-flex align-items-center justify-content-between">
+            <h1 class="logo"><a href="index.html" style="font-family:HypersTechno; color:aqua;">0CO0L</a></h1>
+            <nav id="navbar" class="navbar">
+                <ul>
+                    <li><a class="nav-link" href="index.html#hero">Home</a></li>
+                    <li><a class="nav-link" href="index.html#about">About</a></li>
+                    <li><a class="nav-link" href="index.html#research">Research</a></li>
+                    <li><a class="nav-link" href="index.html#journal">Blog</a></li>
+                    <li><a class="nav-link" href="index.html#contact">Contact</a></li>
+                </ul>
+                <em class="bi bi-list mobile-nav-toggle"></em>
+            </nav>
+        </div>
+    </header>
+
+    <main id="main">
+        <article class="post">
+            <a class="topback" href="blog-writeups.html"><em class="bi bi-arrow-left"></em> All write-ups</a>
+
+            <p class="kicker">CTF Write-up &middot; Coding</p>
+            <h1>Longest Word</h1>
+            <p class="lead">Identifying the longest token in a supplied article file.</p>
+
+            <ul class="tags">
+                <li>EOman 2022</li>
+                <li>Coding</li>
+                <li>Strings</li>
+                <li>Python</li>
+            </ul>
+
+            <div class="meta">
+                <span>Source: <em>EOman 2022</em></span>
+                <span>Category: Coding</span>
+                <span>15 points</span>
+                <span>Easy</span>
+            </div>
+
+            <h2>Challenge</h2>
+            <p>The flag is the longest word in the attached article file.</p>
+
+            <h2>Analysis</h2>
+            <p>The file is read, flattened into a single list of whitespace-separated tokens, and the token of maximum length is selected. Using <code>len</code> as the key avoids any manual length comparison.</p>
+
+            <h2>Solution</h2>
+            <pre>with open('article.txt') as f:
+    words = [y for x in f.readlines() for y in x.split()]
+    longest = max(words, key=len)
+    print(longest, "and it is", len(longest), "characters long")</pre>
+            <p>The longest token printed is the flag.</p>
+
+            <a class="backlink" href="blog-writeups.html">&larr; Back to all write-ups</a>
+        </article>
+    </main>
+
+    <div id="footer" class="text-center">
+        <div class="container">
+            <div class="socials-media text-center">
+                <ul class="list-unstyled">
+                    <li><a href="twitter.html"><em class="bi bi-twitter"></em></a></li>
+                    <li><a href="instagram.html"><em class="bi bi-instagram"></em></a></li>
+                    <li><a href="linkedin.html"><em class="bi bi-linkedin"></em></a></li>
+                    <li><a href="github.html"><em class="bi bi-github"></em></a></li>
+                </ul>
+            </div>
+            <p>&copy; Hamood AlSalmani</p>
+        </div>
+    </div>
+
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><em class="bi bi-arrow-up-short"></em></a>
+    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/main.js"></script>
+</body>
+
+</html>
