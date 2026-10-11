@@ -211,3 +211,26 @@ figcaption { color: var(--ink-faint); font-size: 12.5px; font-style: italic; mar
     box-shadow: 0 0 20px rgba(255,68,214,0.4);
     text-shadow: none;
 }
+
+.post .topback {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--cyan);
+    font-family: rog;
+    font-size: 12px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    border: 1px solid rgba(61,245,255,0.35);
+    border-radius: 999px;
+    padding: 7px 16px;
+    margin-bottom: 30px;
+    transition: all 0.3s ease;
+}
+.post .topback:hover {
+    color: #fff;
+    border-color: var(--magenta);
+    box-shadow: 0 0 18px rgba(255,68,214,0.4);
+    text-shadow: none;
+}
+.post .topback em { font-style: normal; }
