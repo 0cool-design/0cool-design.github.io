@@ -39,7 +39,7 @@
 
             <p class="kicker">Capture The Flag</p>
             <h1>CTF Write-ups</h1>
-            <p class="lead">A collection of capture-the-flag solutions, each documenting the approach taken, the underlying vulnerability or technique, and a reproducible solution.</p>
+            <p class="lead">Solutions and analysis from capture-the-flag challenges, each documenting the approach taken, the underlying vulnerability or technique, and a reproducible solution.</p>
 
             <ul class="tags">
                 <li>CTF</li>
@@ -56,29 +56,120 @@
                 <span>Repository: <a href="https://github.com/0cool-design/WriteUps" target="_blank" rel="noopener">WriteUps</a></span>
             </div>
 
-            <h2>Scope</h2>
-            <p>Each challenge is documented in its own directory, containing a short written analysis and a runnable solution. The objective is not simply to record the flag but to provide a clear account of how the challenge was solved: the observation that proved decisive, the vulnerability or mathematical property it exploited, and code sufficient to reproduce the result.</p>
-
-            <h2>Selected challenges</h2>
+            <h2>Index</h2>
             <div class="tablewrap">
             <table class="data">
-                <tr><th>Source</th><th>Challenge</th><th>Category</th></tr>
-                <tr><td>Cybertalents</td><td>Postbase</td><td>Encoding / Cryptography</td></tr>
-                <tr><td>EOman 2022</td><td>Scattered</td><td>Programming</td></tr>
-                <tr><td>EOman 2022</td><td>Special Summation</td><td>Mathematics / Programming</td></tr>
-                <tr><td>EOman 2022</td><td>Count Words</td><td>Parsing / Strings</td></tr>
-                <tr><td>EOman 2022</td><td>Longest Word</td><td>Parsing / Strings</td></tr>
-                <tr><td>EOman 2022</td><td>CTF22</td><td>Mixed</td></tr>
+                <tr><th>Source</th><th>Challenge</th><th>Category</th><th>Points</th></tr>
+                <tr><td>Cybertalents</td><td><a href="#postbase">Postbase</a></td><td>Cryptography</td><td>50</td></tr>
+                <tr><td>EOman 2022</td><td><a href="#scattered">Scattered</a></td><td>Cryptography</td><td>80</td></tr>
+                <tr><td>EOman 2022</td><td><a href="#special-summation">Special Summation</a></td><td>Coding</td><td>35</td></tr>
+                <tr><td>EOman 2022</td><td><a href="#count-words">Count Words</a></td><td>Coding</td><td>40</td></tr>
+                <tr><td>EOman 2022</td><td><a href="#longest-word">Longest Word</a></td><td>Coding</td><td>15</td></tr>
+                <tr><td>EOman 2022</td><td><a href="#ctf22">CTF22 (escape encoding, strange strings)</a></td><td>Mixed</td><td>n/a</td></tr>
             </table>
             </div>
 
-            <h2>Structure of each write-up</h2>
-            <ul>
-                <li><strong>Reconnaissance.</strong> What the challenge provides and what it is actually asking.</li>
-                <li><strong>Key observation.</strong> The single insight that renders the challenge tractable.</li>
-                <li><strong>Solution.</strong> A clean script that produces the flag from start to finish.</li>
-            </ul>
-            <p>The complete collection, in which each directory contains its own analysis and solution script, is available in the <a href="https://github.com/0cool-design/WriteUps" target="_blank" rel="noopener">WriteUps repository</a>.</p>
+            <h2 id="postbase">Postbase</h2>
+            <p><strong>Cybertalents &middot; Cryptography &middot; 50 points &middot; Easy.</strong> The challenge provides a string of letters and numbers with the hint that it is not understood, of which the leading characters are corrupted:</p>
+            <blockquote>R[corrupted]BR3tCNDUzXzYxWDdZXzRSfQ==</blockquote>
+            <p>The trailing <code>==</code> and the character set identify the data as Base64. The suffix is intact, but the first few characters are unknown, so a direct decode fails. Because the plaintext is expected to begin with the token <code>FLAG</code>, the unknown prefix can be recovered by enumeration: candidate strings matching the known pattern are generated with <code>exrex</code>, each is decoded, and the single candidate whose decoded output begins with <code>FLAG</code> is accepted.</p>
+            <pre>#!/usr/bin/env python3
+import base64, exrex
+
+def Base64_D(base64_message):
+    message = base64.b64decode(base64_message.encode('ascii')).decode('ascii')
+    if message[:4].upper() == "FLAG":
+        print(message)
+
+if __name__ == "__main__":
+    B64hash = exrex.generate('R([A-Za-z0-9+])+BR3tCNDUzXzYxWDdZXzRSfQ==')
+    for i in B64hash:
+        try:
+            Base64_D(str(i))
+        except Exception:
+            pass</pre>
+            <p>The decode that yields a string beginning with <code>FLAG</code> is the flag.</p>
+
+            <h2 id="scattered">Scattered</h2>
+            <p><strong>EOman 2022 &middot; Cryptography &middot; 80 points &middot; Easy.</strong> The flag is distributed across many image files inside a zip archive, and must be reassembled. Each file has been renamed to the MD5 hash of its true name, and the true names follow the pattern <code>r x c</code>, that is, a row and a column coordinate matching the regular expression <code>([0-9]x[0-9])</code>.</p>
+            <p>The solution first brute-forces every file name back to its coordinate by hashing each candidate from that small pattern space until the digest matches:</p>
+            <pre>import os, hashlib, exrex, itertools
+from PIL import Image
+
+def md5_f(hash):
+    for i in itertools.count(1):
+        for s in exrex.generate('([0-9]x[0-9])'):
+            if hashlib.md5(s.encode('utf-8')).hexdigest() == hash:
+                return s</pre>
+            <p>Each file is then renamed to its recovered <code>r x c .jpg</code> coordinate. The number of rows and columns and the tile dimensions are read from the recovered names, a blank canvas of the full size is created, and every tile is pasted into its grid position, reconstructing the complete image and revealing the flag.</p>
+            <pre>for i in range(rows):
+    for j in range(cols):
+        file = str(i) + 'x' + str(j) + '.jpg'
+        if file in files:
+            img = Image.open(file)
+            result.paste(img, (j*width, i*height))
+
+result.show()</pre>
+
+            <h2 id="special-summation">Special Summation</h2>
+            <p><strong>EOman 2022 &middot; Coding &middot; 35 points &middot; Easy.</strong> The task is to sum all odd integers between two bounds, with the condition that any running total ending in a zero is discarded rather than carried forward. For the flag, the bounds are 10 and 1000.</p>
+            <blockquote>7 + 9 = 16
+16 + 11 = 27
+27 + 13 = 40   (skipped: ends in 0)
+27 + 15 = 42
+42 + 17 = 59</blockquote>
+            <p>The running total is updated only when the new sum does not end in zero, which is tested with <code>sum % 10 != 0</code>:</p>
+            <pre>def sum_odd(start, end):
+    odds = [x for x in range(start, end) if x % 2 != 0]
+    total = 0
+    temp = odds[0]
+    for i in range(1, len(odds)):
+        total = temp + odds[i]
+        if total % 10 != 0:
+            temp = total
+    return total
+
+sum_odd(10, 1000)</pre>
+
+            <h2 id="count-words">Count Words</h2>
+            <p><strong>EOman 2022 &middot; Coding &middot; 40 points &middot; Easy.</strong> The flag is the number of words in the supplied file whose embedded digits sum to exactly 10.</p>
+            <blockquote>t5?@h3ro2usands  has 5 + 3 + 2 = 10   (counted)
+o4?@f6r          has 4 + 6     = 10   (counted)
+w1?@e2rr1e       has 1 + 2 + 1 = 4    (not counted)</blockquote>
+            <p>Each word is scanned for digit characters, those digits are summed, and the word is counted when the sum equals 10:</p>
+            <pre>def sum_digits_string(s):
+    return sum(int(x) for x in s if x.isdigit())
+
+with open("dump.txt") as file:
+    count = 0
+    for line in file:
+        for word in line.split():
+            if sum_digits_string(word) == 10:
+                count += 1
+    print(count)</pre>
+
+            <h2 id="longest-word">Longest Word</h2>
+            <p><strong>EOman 2022 &middot; Coding &middot; 15 points &middot; Easy.</strong> The flag is the longest word in the attached article. The file is read, split into tokens, and the maximum by length is selected:</p>
+            <pre>with open('article.txt') as f:
+    words = [y for x in f.readlines() for y in x.split()]
+    longest = max(words, key=len)
+    print(longest, "and it is", len(longest), "characters long")</pre>
+
+            <h2 id="ctf22">CTF22: Escape Encoding and Strange Strings</h2>
+            <p><strong>EOman 2022 &middot; Mixed.</strong> Two short sub-tasks.</p>
+            <p><em>Escape encoding.</em> The flag is given as a list of decimal character codes, recovered by mapping each code to its character:</p>
+            <pre>flag = [89, 111, 117, 71, 111, 116, 84, 104, 101, 70, 108, 64, 103]
+print("".join(map(chr, flag)))
+# YouGotTheFl@g</pre>
+            <p><em>Strange strings.</em> Two Base64-encoded files are provided. Decoding both and keeping only the characters that agree at the same index in each reconstructs the flag:</p>
+            <pre>file1 = base64.b64decode(open('file1.txt').read()).decode('utf-8')
+file2 = base64.b64decode(open('file2.txt').read()).decode('utf-8')
+flag = "".join(file1[i] for i in range(len(file1)) if file1[i] == file2[i])
+print(flag)
+# Flag{YoU_DiD_GooD_MaTcHinG}</pre>
+
+            <h2>Full collection</h2>
+            <p>Each challenge above corresponds to a directory in the repository, where the original notes and complete solution scripts are kept. The full and growing set is available in the <a href="https://github.com/0cool-design/WriteUps" target="_blank" rel="noopener">WriteUps repository</a>.</p>
 
             <a class="backlink" href="index.html#journal">&larr; Back to all posts</a>
         </article>
