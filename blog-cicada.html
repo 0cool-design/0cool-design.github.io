@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>Cracking (and Not Cracking) Cicada 3301 &mdash; Hamood AlSalmani</title>
+    <title>Cracking (and Not Cracking) Cicada 3301 | Hamood AlSalmani</title>
     <meta content="An evidence-based cryptanalysis of the Cicada 3301 Liber Primus: reproducing the solved pages, and proving why the rest resist attack." name="description">
     <meta content="Cicada 3301, Liber Primus, cryptanalysis, cryptography, Index of Coincidence" name="keywords">
 
@@ -23,130 +23,8 @@
 
     <!-- Template Main CSS File -->
     <link href="assets/css/style.css" rel="stylesheet">
+    <link href="assets/css/blog.css" rel="stylesheet">
 
-    <style>
-        @font-face {
-            src: url(assets/fonts/HypersTechno.ttf);
-            font-family: HypersTechno;
-        }
-
-        @font-face {
-            src: url(assets/fonts/rog.ttf);
-            font-family: rog;
-        }
-
-        body { background: #17191a; color: #b9bdbe; }
-
-        .post { max-width: 860px; margin: 0 auto; padding: 140px 20px 80px; }
-
-        .post .kicker {
-            font-family: rog;
-            color: aqua;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            font-size: 13px;
-        }
-
-        .post h1 {
-            font-family: HypersTechno;
-            color: #fff;
-            font-size: 40px;
-            line-height: 1.15;
-            margin: 14px 0 10px;
-            text-shadow: 0 0 10px rgba(0,255,255,.35);
-        }
-
-        .post .lead { color: #9aa0a1; font-size: 17px; font-style: italic; line-height: 1.6; }
-
-        .post .meta {
-            color: #6f7678;
-            font-size: 13px;
-            margin: 18px 0 22px;
-            border-top: 1px solid #2a2d2e;
-            border-bottom: 1px solid #2a2d2e;
-            padding: 12px 0;
-        }
-        .post .meta span { margin-right: 18px; }
-        .post .meta em { color: aqua; font-style: normal; }
-
-        .tags { margin: 0 0 10px; padding: 0; list-style: none; }
-        .tags li {
-            display: inline-block;
-            border: 1px solid rgba(0,255,255,.45);
-            color: aqua;
-            font-size: 11px;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            padding: 4px 10px;
-            margin: 0 6px 6px 0;
-            border-radius: 20px;
-        }
-
-        .post h2 {
-            color: #fff;
-            font-family: rog;
-            font-size: 24px;
-            letter-spacing: 1px;
-            margin: 48px 0 6px;
-            padding-top: 18px;
-            border-top: 1px solid #2a2d2e;
-        }
-        .post h3 { color: aqua; font-size: 18px; margin: 30px 0 4px; }
-
-        .post p { color: #b9bdbe; font-size: 15.5px; line-height: 29px; margin: 16px 0; }
-        .post a { color: aqua; }
-        .post a:hover { color: #44ff00; }
-        .post strong { color: #e6e9ea; }
-
-        .tldr {
-            background: rgba(0,255,255,.05);
-            border-left: 3px solid aqua;
-            padding: 6px 24px;
-            margin: 26px 0;
-            border-radius: 4px;
-        }
-        .tldr h3 { margin-top: 18px; color: aqua; }
-        .post ul { color: #b9bdbe; line-height: 27px; }
-        .post ul li { margin: 7px 0; }
-
-        blockquote {
-            border-left: 3px solid #44ff00;
-            margin: 20px 0;
-            padding: 10px 20px;
-            background: #0d0f10;
-            color: #9fe6c9;
-            font-family: "Courier New", monospace;
-            font-size: 14px;
-            line-height: 1.7;
-            white-space: pre-wrap;
-        }
-
-        pre {
-            background: #0d0f10;
-            border: 1px solid #2a2d2e;
-            border-radius: 6px;
-            padding: 16px;
-            overflow-x: auto;
-            color: #8bded8;
-            font-size: 13px;
-            line-height: 1.6;
-        }
-        code { color: #8bded8; }
-        p code, li code { background: #0d0f10; padding: 1px 6px; border-radius: 4px; font-size: 13px; }
-
-        .tablewrap { overflow-x: auto; margin: 22px 0; }
-        table.data { width: 100%; border-collapse: collapse; font-size: 13.5px; }
-        table.data th, table.data td { padding: 8px 12px; border-bottom: 1px solid #2a2d2e; text-align: left; white-space: nowrap; }
-        table.data th { color: aqua; font-weight: 600; text-transform: uppercase; font-size: 11px; letter-spacing: 1px; }
-        table.data td { color: #b9bdbe; }
-        table.data tr.hl td { color: #9fe6c9; }
-
-        figure { margin: 28px 0; }
-        figure img { width: 100%; background: #fff; border: 1px solid #2a2d2e; border-radius: 6px; padding: 10px; }
-        figcaption { color: #6f7678; font-size: 12.5px; font-style: italic; margin-top: 8px; text-align: center; }
-
-        .post .backlink { display: inline-block; margin: 30px 0 0; color: aqua; font-family: rog; letter-spacing: 1px; }
-    </style>
 </head>
 
 <body>
@@ -196,10 +74,10 @@
                 <h3>TL;DR</h3>
                 <ul>
                     <li>I built <code>cicada</code>, a small dependency-free C++ toolkit that transliterates the 29-rune Gematria Primus and runs the ciphers known to break the solved pages (Atbash, Vigen&egrave;re, totient/prime key-streams), plus a statistical search harness.</li>
-                    <li>It <strong>reproduces every known solve exactly</strong> &mdash; and is validated against planted known-answer ciphers, so a null result means something.</li>
+                    <li>It <strong>reproduces every known solve exactly</strong>, and is validated against planted known-answer ciphers, so a null result means something.</li>
                     <li>Pointed at the <strong>unsolved</strong> pages it recovers <strong>nothing</strong>, and the Index of Coincidence explains why: those pages are statistically flat (IoC &asymp; 0.034, i.e. random over 29 symbols), which rules out the whole class of attacks that cracked the easy pages.</li>
                     <li>The one real structural handle is a <strong>17&sigma; suppression of doublets</strong> (adjacent identical runes): 0.66% observed vs 3.45% expected.</li>
-                    <li>A widely shared &ldquo;27&times;27 totient map&rdquo; solution has <strong>correct arithmetic but is not a verified decryption</strong> &mdash; and I show exactly what would make it one.</li>
+                    <li>A widely shared &ldquo;27&times;27 totient map&rdquo; solution has <strong>correct arithmetic but is not a verified decryption</strong>, and I show exactly what would make it one.</li>
                 </ul>
             </div>
 
@@ -215,7 +93,7 @@
             </table>
             </div>
 
-            <p>Two properties matter throughout. Several runes are <strong>digraphs</strong> (TH, EO, NG, OE, AE, IA, EA), and several Latin letters are <strong>ambiguous</strong> (U/V, C/K, S/Z share a rune). That ambiguity is a recurring source of false confidence &mdash; it hands any proposed decoder extra degrees of freedom. Of the ~74 pages, <strong>17 were solved within months of their 2014 release; the remaining ~57 have resisted the public for over a decade.</strong></p>
+            <p>Two properties matter throughout. Several runes are <strong>digraphs</strong> (TH, EO, NG, OE, AE, IA, EA), and several Latin letters are <strong>ambiguous</strong> (U/V, C/K, S/Z share a rune). That ambiguity is a recurring source of false confidence, it hands any proposed decoder extra degrees of freedom. Of the ~74 pages, <strong>17 were solved within months of their 2014 release; the remaining ~57 have resisted the public for over a decade.</strong></p>
 
             <h2>The toolkit</h2>
             <p><code>cicada</code> is a few hundred lines of dependency-free C++. It reads the same community rune files and provides:</p>
@@ -228,30 +106,30 @@ cicada selftest / cracktest validation on known answers</pre>
             <p>Crucially, it is <strong>validated on known answers</strong>. <code>selftest</code> reproduces the published <em>A Warning</em> transliteration exactly, and <code>cracktest</code> encrypts known English-in-runes under a hidden key and confirms the search recovers it. A search tool that can&rsquo;t be trusted on a known case carries no weight on an unknown one.</p>
 
             <h2>Reproducing the solved pages</h2>
-            <h3><em>A Warning</em> &mdash; Atbash</h3>
+            <h3><em>A Warning</em>, Atbash</h3>
             <p>The first page is simply the 29-rune alphabet reversed:</p>
             <blockquote>A WARNING. BELIEVE NOTHING FROM THIS BOOK. EXCEPT WHAT YOU KNOW TO BE TRUE.
 TEST THE KNOWLEDGE. FIND YOUR TRUTH. EXPERIENCE YOUR DEATH. DO NOT EDIT OR
 CHANGE THIS BOOK, OR THE MESSAGE CONTAINED WITHIN, EITHER THE WORDS OR THEIR
 NUMBERS. FOR ALL IS SACRED.</blockquote>
-            <p>(BOOC&rarr;BOOK, CNOW&rarr;KNOW, BELIEUE&rarr;BELIEVE &mdash; the C/K and U/V ambiguity in action.)</p>
+            <p>(BOOC&rarr;BOOK, CNOW&rarr;KNOW, BELIEUE&rarr;BELIEVE, the C/K and U/V ambiguity in action.)</p>
 
-            <h3><em>An End</em> (p56) &mdash; a totient key-stream</h3>
+            <h3><em>An End</em> (p56), a totient key-stream</h3>
             <p>Here the key-stream is &phi;(p&#8345;) = p&#8345; &minus; 1 for the n-th prime, taken mod 29 and subtracted from the text:</p>
             <blockquote>AN END. WITHIN THE DEEP WEB, THERE EXISTS A PAGE THAT HASHES TO &hellip;</blockquote>
 
-            <h3><em>The Loss of Divinity</em> &mdash; not a cipher at all</h3>
+            <h3><em>The Loss of Divinity</em>, not a cipher at all</h3>
             <p>A useful reminder not to assume encryption. Its Index of Coincidence is <strong>0.0612</strong> (English-level, not random), and the raw transliteration is already plain English. There is nothing to &ldquo;solve.&rdquo;</p>
 
             <h3>The frequency fingerprint of the solved corpus</h3>
-            <p>If the solved pages are genuinely English, their letter and word statistics should look like English. Pooling all nine solved plaintext pages (2,979 runes, 727 words) gives exactly that &mdash; <code>E</code> is the most common symbol at 12.8% (vs ~12.7% in English), and the function-word skeleton (THE, TO, YOU, IS, A, WE, ARE, AND&hellip;) falls right out. The pooled IoC is <strong>0.0614</strong>, right where real English spread across 29 runes should land.</p>
+            <p>If the solved pages are genuinely English, their letter and word statistics should look like English. Pooling all nine solved plaintext pages (2,979 runes, 727 words) gives exactly that, <code>E</code> is the most common symbol at 12.8% (vs ~12.7% in English), and the function-word skeleton (THE, TO, YOU, IS, A, WE, ARE, AND&hellip;) falls right out. The pooled IoC is <strong>0.0614</strong>, right where real English spread across 29 runes should land.</p>
             <figure>
                 <img src="https://raw.githubusercontent.com/0cool-design/azdecrypt/cicada/assets/freq_letters.png" alt="Rune frequency across the solved corpus" loading="lazy">
-                <figcaption>Rune frequency across the solved corpus &mdash; it tracks English closely.</figcaption>
+                <figcaption>Rune frequency across the solved corpus, it tracks English closely.</figcaption>
             </figure>
 
             <h2>The unsolved pages, and the Index of Coincidence</h2>
-            <p>The <strong>Index of Coincidence</strong> (Friedman, 1920s) is the probability that two symbols drawn at random from a text are the same. Natural language is lumpy &mdash; a few letters dominate &mdash; so English scores ~0.0667, while uniform random over 29 symbols sits at 1/29 &asymp; 0.0345. The key property: the IoC is <em>invariant</em> under monoalphabetic ciphers, but <em>collapses</em> toward the random floor under polyalphabetic / running-key ciphers. One cheap number tells you which family of cipher you can even hope for.</p>
+            <p>The <strong>Index of Coincidence</strong> (Friedman, 1920s) is the probability that two symbols drawn at random from a text are the same. Natural language is lumpy, a few letters dominate, so English scores ~0.0667, while uniform random over 29 symbols sits at 1/29 &asymp; 0.0345. The key property: the IoC is <em>invariant</em> under monoalphabetic ciphers, but <em>collapses</em> toward the random floor under polyalphabetic / running-key ciphers. One cheap number tells you which family of cipher you can even hope for.</p>
 
             <div class="tablewrap">
             <table class="data">
@@ -267,17 +145,17 @@ NUMBERS. FOR ALL IS SACRED.</blockquote>
                 <tr><td>p54-55</td><td>308</td><td>0.0338</td><td>no English</td></tr>
             </table>
             </div>
-            <p><strong>Every unsolved page sits on the random baseline.</strong> This is a strong, informative negative: the statistics are flat, so there is no periodic key or monoalphabetic mapping to recover. It&rsquo;s not a limitation of the tool &mdash; it&rsquo;s the tool reporting the truth. The solved pages used <em>simple</em> ciphers and left <em>detectable</em> structure; the unsolved pages left none.</p>
+            <p><strong>Every unsolved page sits on the random baseline.</strong> This is a strong, informative negative: the statistics are flat, so there is no periodic key or monoalphabetic mapping to recover. It&rsquo;s not a limitation of the tool, it&rsquo;s the tool reporting the truth. The solved pages used <em>simple</em> ciphers and left <em>detectable</em> structure; the unsolved pages left none.</p>
 
             <figure>
                 <img src="https://raw.githubusercontent.com/0cool-design/azdecrypt/cicada/assets/difficulty.png" alt="Liber Primus pages ranked by predicted difficulty" loading="lazy">
                 <figcaption>Every page the IoC labels &ldquo;easy&rdquo; was in fact solved; every flat page is unsolved.</figcaption>
             </figure>
 
-            <p><strong>An essential caveat:</strong> difficulty here means <em>resistance to statistical attack</em>, not unsolvability. <em>An End</em> has the <em>lowest</em> IoC of all (0.0325) yet is solved &mdash; because its non-repeating totient key-stream was <em>deduced</em>, not found statistically. A flat IoC says &ldquo;statistics won&rsquo;t help here.&rdquo; It says nothing about whether an <em>insight</em> will.</p>
+            <p><strong>An essential caveat:</strong> difficulty here means <em>resistance to statistical attack</em>, not unsolvability. <em>An End</em> has the <em>lowest</em> IoC of all (0.0325) yet is solved, because its non-repeating totient key-stream was <em>deduced</em>, not found statistically. A flat IoC says &ldquo;statistics won&rsquo;t help here.&rdquo; It says nothing about whether an <em>insight</em> will.</p>
 
             <h2>Deeper probes &amp; a number-theoretic key-stream search</h2>
-            <p>Beyond the single-symbol IoC, a battery of probes test for any exploitable regularity: chi-squared vs uniform, digraphic IoC, autocorrelation/Kasiski periods, and zlib compressibility. Across the corpus they behave like a calibrated instrument &mdash; the plaintext control lights up on every probe, and every unsolved page sits at the random baseline.</p>
+            <p>Beyond the single-symbol IoC, a battery of probes test for any exploitable regularity: chi-squared vs uniform, digraphic IoC, autocorrelation/Kasiski periods, and zlib compressibility. Across the corpus they behave like a calibrated instrument, the plaintext control lights up on every probe, and every unsolved page sits at the random baseline.</p>
             <p>The flat statistics point to a key-stream cipher, and the solved pages reveal Cicada&rsquo;s taste for primes and totients. So I brute-forced a library of deterministic integer sequences as key-streams (mod 29): primes, &phi;(prime), &phi;(n), M&ouml;bius &mu;, divisor counts, Fibonacci, Lucas, triangular, squares, prime gaps, Thue-Morse, digits of &pi;&hellip;</p>
 
             <div class="tablewrap">
@@ -290,29 +168,29 @@ NUMBERS. FOR ALL IS SACRED.</blockquote>
                 <tr><td>p40-53</td><td>tau(n)</td><td>&minus;14.7</td><td>0.0344</td><td>no</td></tr>
             </table>
             </div>
-            <p>The search <strong>rediscovers <em>An End</em> with no hints</strong> (positive control), cleanly separated from noise &mdash; but against the unsolved pages, <strong>nothing</strong>. I further ruled out repeating keys of any period &le; 40, homophonic substitution, pure transposition, and English running keys.</p>
+            <p>The search <strong>rediscovers <em>An End</em> with no hints</strong> (positive control), cleanly separated from noise, but against the unsolved pages, <strong>nothing</strong>. I further ruled out repeating keys of any period &le; 40, homophonic substitution, pure transposition, and English running keys.</p>
             <figure>
                 <img src="https://raw.githubusercontent.com/0cool-design/azdecrypt/cicada/assets/periodic_ioc.png" alt="Friedman periodic-IoC test" loading="lazy">
-                <figcaption>A simulated repeating key spikes at its period; the unsolved pages stay pinned to the random floor &mdash; no repeating key exists.</figcaption>
+                <figcaption>A simulated repeating key spikes at its period; the unsolved pages stay pinned to the random floor, no repeating key exists.</figcaption>
             </figure>
 
             <h2>The one real signal: doublet suppression</h2>
-            <p>Every probe so far returns &ldquo;random.&rdquo; There is exactly one exception, long noted by the CicadaSolvers community: <strong>adjacent identical runes are strongly suppressed.</strong> Pooled across the unsolved corpus (12,956 runes), doublets occur <strong>86 times where 446 are expected</strong> &mdash; 0.66% against 3.45%, a <strong>17&sigma; deficit</strong>:</p>
+            <p>Every probe so far returns &ldquo;random.&rdquo; There is exactly one exception, long noted by the CicadaSolvers community: <strong>adjacent identical runes are strongly suppressed.</strong> Pooled across the unsolved corpus (12,956 runes), doublets occur <strong>86 times where 446 are expected</strong>, 0.66% against 3.45%, a <strong>17&sigma; deficit</strong>:</p>
             <div class="tablewrap">
             <table class="data">
                 <tr><th></th><th>runes</th><th>doublets</th><th>rate</th><th>expected</th><th>binomial z</th></tr>
                 <tr class="hl"><td>unsolved corpus (pooled)</td><td>12,956</td><td>86</td><td>0.66%</td><td>3.45% (446)</td><td>&minus;17.4</td></tr>
             </table>
             </div>
-            <p>It holds on every individual page, and matches the community&rsquo;s reported values exactly &mdash; independent confirmation from a separate codebase. Each rune is drawn almost uniformly from the 28 values that are <em>not</em> its predecessor.</p>
+            <p>It holds on every individual page, and matches the community&rsquo;s reported values exactly, independent confirmation from a separate codebase. Each rune is drawn almost uniformly from the 28 values that are <em>not</em> its predecessor.</p>
             <figure>
                 <img src="https://raw.githubusercontent.com/0cool-design/azdecrypt/cicada/assets/bigram_heatmap.png" alt="Bigram heatmaps" loading="lazy">
-                <figcaption>English lights up specific digraphs (THE, ER&hellip;); the unsolved corpus is a uniform field &mdash; except for a dark diagonal, the suppressed doublets.</figcaption>
+                <figcaption>English lights up specific digraphs (THE, ER&hellip;); the unsolved corpus is a uniform field, except for a dark diagonal, the suppressed doublets.</figcaption>
             </figure>
-            <p>On its own it yields neither plaintext nor key &mdash; but it&rsquo;s the single genuine structural handle in the corpus, and any future attack should treat doublet-freeness as a hard constraint the true solution must satisfy.</p>
+            <p>On its own it yields neither plaintext nor key, but it&rsquo;s the single genuine structural handle in the corpus, and any future attack should treat doublet-freeness as a hard constraint the true solution must satisfy.</p>
 
             <h2>Which cipher family fits?</h2>
-            <p>To <em>identify</em> the family, I enciphered known English runes under each candidate cipher and compared the resulting fingerprint to the observed one. Only one family matches on every axis &mdash; including the anomalous doublet suppression:</p>
+            <p>To <em>identify</em> the family, I enciphered known English runes under each candidate cipher and compared the resulting fingerprint to the observed one. Only one family matches on every axis, including the anomalous doublet suppression:</p>
             <div class="tablewrap">
             <table class="data">
                 <tr><th>cipher family (applied to English)</th><th>IoC</th><th>doublet %</th><th>periodic IoC</th><th>bigram dep. z</th></tr>
@@ -329,10 +207,10 @@ NUMBERS. FOR ALL IS SACRED.</blockquote>
                 <img src="https://raw.githubusercontent.com/0cool-design/azdecrypt/cicada/assets/fingerprint.png" alt="Cipher-family fingerprint heatmap" loading="lazy">
                 <figcaption>Green = close to observed, red = far. Only the anti-doublet stream matches on all four axes.</figcaption>
             </figure>
-            <p><strong>Identification:</strong> the unsolved pages are best described as a <strong>non-repeating additive key-stream cipher over the 29 runes</strong> &mdash; the same broad family as <em>An End</em> &mdash; carrying one extra deliberate property: <strong>adjacent ciphertext runes are almost never equal.</strong> They are <em>not</em> a simple substitution, a repeating-key Vigen&egrave;re, a pure transposition, or an English running key. Fingerprint matching names the mechanism to reverse-engineer; it does not, by itself, read the pages.</p>
+            <p><strong>Identification:</strong> the unsolved pages are best described as a <strong>non-repeating additive key-stream cipher over the 29 runes</strong>, the same broad family as <em>An End</em>, carrying one extra deliberate property: <strong>adjacent ciphertext runes are almost never equal.</strong> They are <em>not</em> a simple substitution, a repeating-key Vigen&egrave;re, a pure transposition, or an English running key. Fingerprint matching names the mechanism to reverse-engineer; it does not, by itself, read the pages.</p>
 
             <h2>Evaluating the &ldquo;27&times;27 totient map&rdquo; solution</h2>
-            <p>A detailed, sincere reconstruction by GitHub user <strong>2retooz270703</strong> proposes that pages 0&ndash;2 (the first 729 runes = 27&times;27 grid) decrypt via a custom route to the text <em>&ldquo;AS I GO, THE WEATHER TURNS COLD &hellip; SEE YOU SOON,&rdquo;</em> supported by striking numerology. I verified the numerical claims independently &mdash; <strong>each holds</strong>:</p>
+            <p>A detailed, sincere reconstruction by GitHub user <strong>2retooz270703</strong> proposes that pages 0&ndash;2 (the first 729 runes = 27&times;27 grid) decrypt via a custom route to the text <em>&ldquo;AS I GO, THE WEATHER TURNS COLD &hellip; SEE YOU SOON,&rdquo;</em> supported by striking numerology. I verified the numerical claims independently, <strong>each holds</strong>:</p>
             <div class="tablewrap">
             <table class="data">
                 <tr><th>claim</th><th>verified</th></tr>
@@ -343,7 +221,7 @@ NUMBERS. FOR ALL IS SACRED.</blockquote>
                 <tr><td>2163 = 3 &times; 7 &times; 103 = U &middot; O &middot; Y (prime values) &rarr; &ldquo;YOU&rdquo;</td><td>&#10003;</td></tr>
             </table>
             </div>
-            <p>So the arithmetic is real. <strong>But correct arithmetic is not a verified decryption</strong>, for three reasons: (1) the method has <em>many</em> tunable choices, which &mdash; combined with the Gematria ambiguity &mdash; can be steered toward a pre-chosen sentence; (2) the numerology was found <em>after</em> fixing the plaintext, and striking coincidences are expected by chance (apophenia); (3) it doesn&rsquo;t match how the genuine pages work &mdash; every confirmed solve uses one simple, deterministic cipher with built-in verification (<em>An End</em> literally hashes to a specific value).</p>
+            <p>So the arithmetic is real. <strong>But correct arithmetic is not a verified decryption</strong>, for three reasons: (1) the method has <em>many</em> tunable choices, which, combined with the Gematria ambiguity, can be steered toward a pre-chosen sentence; (2) the numerology was found <em>after</em> fixing the plaintext, and striking coincidences are expected by chance (apophenia); (3) it doesn&rsquo;t match how the genuine pages work, every confirmed solve uses one simple, deterministic cipher with built-in verification (<em>An End</em> literally hashes to a specific value).</p>
             <p>What <em>would</em> verify it: a deterministic, parameter-free procedure reproducible by an independent implementation; a null control (the same ruleset yields English from the real ciphertext but <em>not</em> from random runes of identical statistics); and an independently checkable artifact like a valid hash/onion. Until then, it&rsquo;s an elegant <em>hypothesis</em>, not a solve.</p>
 
             <h2>Takeaways</h2>

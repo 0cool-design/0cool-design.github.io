@@ -63,30 +63,67 @@
             --darkreader-inline-bgcolor: #1a1d1e;
         }
 
-        /* Research section */
-        #research { background: #4b4a4a; }
-        #research .journal-info { margin-bottom: 26px; }
-        #research .journal-txt h4 a { color: aqua; }
-        #research .journal-txt h4 a:hover { color: #44ff00; }
-        #research .journal-txt p { color: #d2d6d7; }
-
-        /* Blog cards */
-        #journal .journal-txt h4 a { color: aqua; }
-        #journal .journal-txt h4 a:hover { color: #44ff00; }
-        #journal .excerpt { color: #d2d6d7; }
-        #journal .post-tags { margin: 0 0 8px; padding: 0; list-style: none; }
-        #journal .post-tags li {
-            display: inline-block;
-            border: 1px solid rgba(0,255,255,.45);
-            color: aqua;
-            font-size: 10px;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            padding: 2px 9px;
-            margin: 0 5px 5px 0;
-            border-radius: 20px;
+        /* ===== Apple x Cyberpunk theme ===== */
+        #about, #research, #journal, #contact {
+            background: #0b0d10;
+            background-image:
+                radial-gradient(900px 440px at 12% -10%, rgba(61,245,255,.07), transparent 60%),
+                radial-gradient(820px 420px at 100% 0%, rgba(255,68,214,.055), transparent 55%);
         }
-        #journal .repo-link { color: aqua; }
+        .section-title h2 { color: #fff !important; text-shadow: 0 0 16px rgba(61,245,255,.3); }
+
+        /* Glass cards for research + blog */
+        #research .journal-info, #journal .journal-info {
+            background: rgba(255,255,255,.04);
+            border: 1px solid rgba(255,255,255,.10);
+            border-radius: 18px;
+            padding: 26px 24px;
+            height: 100%;
+            margin-bottom: 26px;
+            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px);
+            transition: border-color .3s ease, box-shadow .3s ease, transform .3s ease;
+        }
+        #research .journal-info:hover, #journal .journal-info:hover {
+            border-color: rgba(61,245,255,.55);
+            box-shadow: 0 0 0 1px rgba(61,245,255,.2), 0 16px 50px rgba(0,0,0,.45);
+            transform: translateY(-4px);
+        }
+        #research .journal-txt, #journal .journal-txt { padding: 0; }
+        #research .journal-txt h4 a, #journal .journal-txt h4 a {
+            color: #eef8fa; font-size: 19px; font-weight: 600;
+        }
+        #research .journal-txt h4 a:hover, #journal .journal-txt h4 a:hover { color: #3df5ff; }
+        #research .journal-txt p, #journal .excerpt {
+            color: #c6cdd0; font-size: 15px; line-height: 26px;
+        }
+        #research .journal-txt p a, #journal .journal-txt p a { color: #3df5ff; }
+        #research .journal-txt p a:hover, #journal .journal-txt p a:hover { color: #ff44d6; }
+
+        /* Tag pills */
+        #journal .post-tags, #research .post-tags { margin: 0 0 10px; padding: 0; list-style: none; }
+        #journal .post-tags li, #research .post-tags li {
+            display: inline-block;
+            border: 1px solid rgba(61,245,255,.4);
+            background: rgba(61,245,255,.08);
+            color: #3df5ff;
+            font-size: 10px;
+            letter-spacing: 1.2px;
+            text-transform: uppercase;
+            padding: 3px 11px;
+            margin: 0 6px 6px 0;
+            border-radius: 999px;
+        }
+        #journal .repo-link, #research .repo-link { color: #3df5ff; }
+
+        /* About section readability */
+        #about .about-descr .p-heading { color: #3df5ff !important; text-shadow: 0 0 16px rgba(61,245,255,.3); font-weight: 600; }
+        #about .about-descr .separator,
+        #about .about-descr ul { color: #c6cdd0 !important; line-height: 30px; }
+        #about .div-img-bg { border-color: #3df5ff !important; box-shadow: 0 0 45px rgba(61,245,255,.22); }
+
+        /* Contact readability */
+        #contact .contact-details a, #contact .contact-details span { color: #c6cdd0; }
     </style>
 
 </head>
@@ -150,12 +187,12 @@
                     </div>
                     <div class="col-lg-7">
                         <div class="about-descr">
-                            <p class="p-heading" style="color:aqua;">Security researcher &amp; hardware hacker.</p>
+                            <p class="p-heading" style="color:aqua;">Security researcher and hardware hacker.</p>
                             <p class="separator" style="color:#d2d6d7; max-width:100%;">
-                                I break and build things across the stack &mdash; from web and binary exploitation
-                                to firmware and radios. I write exploit proof-of-concepts, tinker with
-                                microcontrollers and wireless, and spend my spare cycles on cryptography,
-                                number theory, and CTFs.
+                                My work spans web and binary exploitation, firmware, and wireless systems,
+                                alongside a continuing interest in cryptography, number theory, and
+                                capture-the-flag competitions. The projects collected here range from
+                                low-level hardware experiments to applied mathematics and cryptanalysis.
                             </p>
                             <ul style="color:#d2d6d7; line-height:30px; list-style:none; padding:0; margin-top:10px;">
                                 <li><em class="bi bi-shield-lock" style="color:aqua;"></em> &nbsp;Exploit development &amp; vulnerability research</li>
@@ -190,12 +227,12 @@
                             <div class="journal-info">
                                 <div class="journal-txt">
                                     <em class="bi bi-incognito" style="font-size:40px; color:aqua;"></em>
-                                    <h4><a href="blog-cicada.html">Cicada 3301 &mdash; Cracking the Liber Primus</a></h4>
+                                    <h4><a href="blog-cicada.html">Cicada 3301, Cracking the Liber Primus</a></h4>
                                     <p>
                                         An evidence-based cryptanalysis of the Cicada 3301 <em>Liber Primus</em>.
                                         I built a dependency-free C++ toolkit that reproduces every solved page
                                         exactly, then used the Index of Coincidence and a battery of statistical
-                                        probes to show <em>why</em> the remaining ~57 pages resist attack &mdash;
+                                        probes to show <em>why</em> the remaining ~57 pages resist attack, 
                                         identifying the cipher family, the 17&sigma; doublet-suppression signal, and
                                         auditing the popular &ldquo;27&times;27 totient map&rdquo; proposal.
                                     </p>
@@ -218,7 +255,7 @@
                                     <em class="bi bi-eye" style="font-size:34px; color:aqua;"></em>
                                     <h4><a href="blog-stereogram.html">Stereogram Analyzer</a></h4>
                                     <p>Recovering hidden depth maps and 3D point clouds from autostereograms
-                                       (Magic Eye images) &mdash; period estimation, block-matching depth, and a
+                                       (Magic Eye images), period estimation, block-matching depth, and a
                                        live in-browser viewer.</p>
                                     <p><a href="blog-stereogram.html">Read &rarr;</a> &nbsp;&middot;&nbsp; <a href="https://github.com/0cool-design/stereogram-analyzer" target="_blank" rel="noopener">Repo</a></p>
                                 </div>
@@ -230,7 +267,7 @@
                                 <div class="journal-txt">
                                     <em class="bi bi-box" style="font-size:34px; color:aqua;"></em>
                                     <h4><a href="blog-gyroid.html">Gyroid</a></h4>
-                                    <p>Generating the gyroid &mdash; a triply-periodic minimal surface with zero
+                                    <p>Generating the gyroid, a triply-periodic minimal surface with zero
                                        mean curvature that tiles space infinitely without self-intersecting.</p>
                                     <p><a href="blog-gyroid.html">Read &rarr;</a> &nbsp;&middot;&nbsp; <a href="https://github.com/0cool-design/gyroid" target="_blank" rel="noopener">Repo</a></p>
                                 </div>
@@ -243,7 +280,7 @@
                                     <em class="bi bi-infinity" style="font-size:34px; color:aqua;"></em>
                                     <h4><a href="blog-pi-bigo.html">&pi; &amp; Big-O</a></h4>
                                     <p>Computing &pi; from the Leibniz series while streaming the running
-                                       time-complexity live &mdash; a hands-on playground for Big-O intuition.</p>
+                                       time-complexity live, a hands-on playground for Big-O intuition.</p>
                                     <p><a href="blog-pi-bigo.html">Read &rarr;</a> &nbsp;&middot;&nbsp; <a href="https://github.com/0cool-design/Pi_BIG-O" target="_blank" rel="noopener">Repo</a></p>
                                 </div>
                             </div>
@@ -254,7 +291,7 @@
                                 <div class="journal-txt">
                                     <em class="bi bi-key" style="font-size:34px; color:aqua;"></em>
                                     <h4><a href="blog-totient.html">Euler's Totient</a></h4>
-                                    <p>Exploring Euler's totient function &phi;(n) &mdash; the number-theory
+                                    <p>Exploring Euler's totient function &phi;(n), the number-theory
                                        backbone behind RSA key generation and modular arithmetic.</p>
                                     <p><a href="blog-totient.html">Read &rarr;</a> &nbsp;&middot;&nbsp; <a href="https://github.com/0cool-design/Totient" target="_blank" rel="noopener">Repo</a></p>
                                 </div>
@@ -266,7 +303,7 @@
                                 <div class="journal-txt">
                                     <em class="bi bi-flag" style="font-size:34px; color:aqua;"></em>
                                     <h4><a href="blog-writeups.html">CTF Write-ups</a></h4>
-                                    <p>Solutions and notes from capture-the-flag challenges &mdash; web, binary,
+                                    <p>Solutions and notes from capture-the-flag challenges, web, binary,
                                        crypto, and forensics.</p>
                                     <p><a href="blog-writeups.html">Read &rarr;</a> &nbsp;&middot;&nbsp; <a href="https://github.com/0cool-design/WriteUps" target="_blank" rel="noopener">Repo</a></p>
                                 </div>
@@ -308,7 +345,7 @@
                                     <p class="excerpt">Reproducing the solved pages of the <em>Liber Primus</em> with a
                                        small C++ toolkit, then using the Index of Coincidence and a battery of
                                        statistical probes to prove why the remaining ~57 pages have resisted the
-                                       internet for over a decade &mdash; plus an evidence-based review of the popular
+                                       internet for over a decade, plus an evidence-based review of the popular
                                        &ldquo;27&times;27 totient map&rdquo; solution.</p>
                                     <p>
                                         <a href="blog-cicada.html">Read the full write-up &rarr;</a>
@@ -328,7 +365,7 @@
                                 <div class="journal-txt">
                                     <ul class="post-tags"><li>Computer Vision</li><li>Python</li></ul>
                                     <h4><a href="blog-stereogram.html">Seeing Through Magic Eye</a></h4>
-                                    <p class="excerpt">Recovering the hidden 3D surface encoded inside single-image autostereograms &mdash; and a live in-browser port.</p>
+                                    <p class="excerpt">Recovering the hidden 3D surface encoded inside single-image autostereograms, and a live in-browser port.</p>
                                     <p><a href="blog-stereogram.html">Read &rarr;</a> &nbsp;&middot;&nbsp; <a class="repo-link" href="https://github.com/0cool-design/stereogram-analyzer" target="_blank" rel="noopener">Repo</a></p>
                                 </div>
                             </div>
@@ -361,7 +398,7 @@
                                 <div class="journal-txt">
                                     <ul class="post-tags"><li>Number Theory</li><li>Crypto</li></ul>
                                     <h4><a href="blog-totient.html">The Shape of Euler&rsquo;s Totient</a></h4>
-                                    <p class="excerpt">Computing &phi;(n) and plotting it &mdash; where scattered points draw the structure behind RSA.</p>
+                                    <p class="excerpt">Computing &phi;(n) and plotting it, where scattered points draw the structure behind RSA.</p>
                                     <p><a href="blog-totient.html">Read &rarr;</a> &nbsp;&middot;&nbsp; <a class="repo-link" href="https://github.com/0cool-design/Totient" target="_blank" rel="noopener">Repo</a></p>
                                 </div>
                             </div>
@@ -372,7 +409,7 @@
                                 <div class="journal-txt">
                                     <ul class="post-tags"><li>CTF</li><li>Write-ups</li></ul>
                                     <h4><a href="blog-writeups.html">CTF Write-ups</a></h4>
-                                    <p class="excerpt">Solutions and notes from capture-the-flag challenges &mdash; the approach, the trick, and the solve script.</p>
+                                    <p class="excerpt">Solutions and notes from capture-the-flag challenges, the approach, the trick, and the solve script.</p>
                                     <p><a href="blog-writeups.html">Read &rarr;</a> &nbsp;&middot;&nbsp; <a class="repo-link" href="https://github.com/0cool-design/WriteUps" target="_blank" rel="noopener">Repo</a></p>
                                 </div>
                             </div>
