@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Rendering the Gyroid &mdash; 0cool</title>
+    <meta content="Turning one implicit equation into an infinite, self-intersection-free minimal surface." name="description">
+
+    <link rel="apple-touch-icon" sizes="144x144" href="assets/img/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32x32.png">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,300i,400,400i,500,500i,600,600i,700,700i|Playfair+Display:400,400i,500,500i,600,600i,700,700i,900,900i" rel="stylesheet">
+    <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="assets/css/style.css" rel="stylesheet">
+    <link href="assets/css/blog.css" rel="stylesheet">
+</head>
+
+<body>
+    <header id="header" class="fixed-top">
+        <div class="container d-flex align-items-center justify-content-between">
+            <h1 class="logo"><a href="index.html" style="font-family:HypersTechno; color:aqua;">0CO0L</a></h1>
+            <nav id="navbar" class="navbar">
+                <ul>
+                    <li><a class="nav-link" href="index.html#hero">Home</a></li>
+                    <li><a class="nav-link" href="index.html#about">About</a></li>
+                    <li><a class="nav-link" href="index.html#research">Research</a></li>
+                    <li><a class="nav-link" href="index.html#journal">Blog</a></li>
+                    <li><a class="nav-link" href="index.html#contact">Contact</a></li>
+                </ul>
+                <em class="bi bi-list mobile-nav-toggle"></em>
+            </nav>
+        </div>
+    </header>
+
+    <main id="main">
+        <article class="post">
+
+            <p class="kicker">Geometry &middot; Project</p>
+            <h1>Rendering the Gyroid</h1>
+            <p class="lead">One implicit equation, a marching-cubes pass, and you get an infinite minimal surface that never intersects itself.</p>
+
+            <ul class="tags">
+                <li>Geometry</li>
+                <li>Minimal Surfaces</li>
+                <li>Marching Cubes</li>
+                <li>NumPy</li>
+                <li>Matplotlib</li>
+                <li>Math</li>
+            </ul>
+
+            <div class="meta">
+                <span>By <em>0cool</em></span>
+                <span>Project write-up</span>
+                <span>Repo: <a href="https://github.com/0cool-design/gyroid" target="_blank" rel="noopener">gyroid</a></span>
+            </div>
+
+            <h2>What is a gyroid?</h2>
+            <p>The gyroid is a <strong>triply-periodic minimal surface</strong> &mdash; a surface that repeats in all three dimensions, has zero mean curvature everywhere (locally soap-film-like), and, remarkably, contains no straight lines and <strong>never self-intersects</strong>. It was discovered by Alan Schoen at NASA in 1970, and it keeps showing up in the real world: in butterfly wing scales, in block-copolymer nanostructures, and &mdash; because it&rsquo;s strong, light, and fully connected &mdash; as a favourite infill pattern for 3D printing.</p>
+
+            <h2>The math</h2>
+            <p>There&rsquo;s a beautifully compact approximation to the gyroid as the zero level-set of a single trigonometric field:</p>
+            <blockquote>sin(x)&middot;cos(y) + sin(y)&middot;cos(z) + sin(z)&middot;cos(x) = 0</blockquote>
+            <p>Every point where that expression equals zero lies on the surface. Everything else is just sampling and extracting it.</p>
+
+            <h2>The code</h2>
+            <p>The whole thing is a short NumPy + scikit-image script: sample the field on a 50&times;50&times;50 grid over [&minus;&pi;, &pi;]&sup3;, then run <strong>marching cubes</strong> at level 0 to pull the isosurface out as a triangle mesh and plot it.</p>
+            <pre>grid_size = 50
+x = np.linspace(-np.pi, np.pi, grid_size)
+X, Y, Z = np.meshgrid(x, x, x)
+
+gyroid = np.sin(X)*np.cos(Y) + np.sin(Y)*np.cos(Z) + np.sin(Z)*np.cos(X)
+
+verts, faces, normals, values = measure.marching_cubes(gyroid, level=0)
+ax.plot_trisurf(verts[:,0], verts[:,1], verts[:,2], triangles=faces, cmap='viridis')</pre>
+            <figure>
+                <img src="https://raw.githubusercontent.com/0cool-design/gyroid/main/Figure_1.png" alt="Rendered gyroid surface" loading="lazy">
+                <figcaption>The extracted gyroid surface over a single periodic cell.</figcaption>
+            </figure>
+            <p>Bump up <code>grid_size</code> for a smoother surface (at the cost of memory and time), or widen the sampling domain to tile more periods of the cell.</p>
+
+            <a class="backlink" href="index.html#journal">&larr; Back to all posts</a>
+        </article>
+    </main>
+
+    <div id="footer" class="text-center">
+        <div class="container">
+            <div class="socials-media text-center">
+                <ul class="list-unstyled">
+                    <li><a href="twitter.html"><em class="bi bi-twitter"></em></a></li>
+                    <li><a href="instagram.html"><em class="bi bi-instagram"></em></a></li>
+                    <li><a href="linkedin.html"><em class="bi bi-linkedin"></em></a></li>
+                    <li><a href="github.html"><em class="bi bi-github"></em></a></li>
+                </ul>
+            </div>
+            <p>&copy; Hamood AlSalmani</p>
+        </div>
+    </div>
+
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><em class="bi bi-arrow-up-short"></em></a>
+    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/main.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>The Shape of Euler's Totient &mdash; 0cool</title>
+    <meta content="Computing Euler's totient phi(n) and visualizing its scattered, self-similar cloud." name="description">
+
+    <link rel="apple-touch-icon" sizes="144x144" href="assets/img/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32x32.png">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,300i,400,400i,500,500i,600,600i,700,700i|Playfair+Display:400,400i,500,500i,600,600i,700,700i,900,900i" rel="stylesheet">
+    <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="assets/css/style.css" rel="stylesheet">
+    <link href="assets/css/blog.css" rel="stylesheet">
+</head>
+
+<body>
+    <header id="header" class="fixed-top">
+        <div class="container d-flex align-items-center justify-content-between">
+            <h1 class="logo"><a href="index.html" style="font-family:HypersTechno; color:aqua;">0CO0L</a></h1>
+            <nav id="navbar" class="navbar">
+                <ul>
+                    <li><a class="nav-link" href="index.html#hero">Home</a></li>
+                    <li><a class="nav-link" href="index.html#about">About</a></li>
+                    <li><a class="nav-link" href="index.html#research">Research</a></li>
+                    <li><a class="nav-link" href="index.html#journal">Blog</a></li>
+                    <li><a class="nav-link" href="index.html#contact">Contact</a></li>
+                </ul>
+                <em class="bi bi-list mobile-nav-toggle"></em>
+            </nav>
+        </div>
+    </header>
+
+    <main id="main">
+        <article class="post">
+
+            <p class="kicker">Number Theory &middot; Project</p>
+            <h1>The Shape of Euler&rsquo;s Totient</h1>
+            <p class="lead">Computing &phi;(n) for every number up to <em>N</em> and plotting it &mdash; where the scattered points quietly draw the structure of the integers.</p>
+
+            <ul class="tags">
+                <li>Number Theory</li>
+                <li>Euler Totient</li>
+                <li>RSA</li>
+                <li>Cryptography</li>
+                <li>Python</li>
+                <li>Plotly</li>
+            </ul>
+
+            <div class="meta">
+                <span>By <em>0cool</em></span>
+                <span>Project write-up</span>
+                <span>Repo: <a href="https://github.com/0cool-design/Totient" target="_blank" rel="noopener">Totient</a></span>
+            </div>
+
+            <h2>What is &phi;(n)?</h2>
+            <p>Euler&rsquo;s totient function <strong>&phi;(n)</strong> counts how many integers from 1 to <code>n</code> are coprime to <code>n</code> (share no factor with it other than 1). For a prime <code>p</code>, everything below it is coprime, so &phi;(p) = p &minus; 1. For composite numbers it drops, depending on their prime factors.</p>
+
+            <h2>Computing it</h2>
+            <p>The clean way is straight from the prime-factorisation formula, &phi;(n) = n&middot;&prod;(1 &minus; 1/p) over the distinct primes <code>p</code> dividing <code>n</code>. The code implements exactly that with trial division:</p>
+            <pre>def phi(n):
+    result = n
+    p = 2
+    while p * p &lt;= n:
+        if n % p == 0:
+            while n % p == 0:
+                n //= p
+            result -= result // p
+        p += 1
+    if n &gt; 1:
+        result -= result // n
+    return result</pre>
+            <p>The tool computes &phi;(i) for every <code>i</code> up to a chosen <code>N</code>, caches the results to a CSV so repeat runs are instant, and plots &phi; against <code>n</code> with Plotly.</p>
+
+            <h2>Why the plot is interesting</h2>
+            <p>Plotted, &phi;(n) isn&rsquo;t a smooth curve &mdash; it&rsquo;s a <strong>cloud of rays</strong>. The primes ride along the top edge at &phi;(n) = n &minus; 1; numbers with many small prime factors sink far below; and the whole thing has a fractal, self-similar texture that&rsquo;s a direct fingerprint of how divisibility is distributed across the integers.</p>
+
+            <h2>Why it matters</h2>
+            <p>&phi; isn&rsquo;t just pretty. It&rsquo;s the <strong>backbone of RSA</strong>: for a modulus n = p&middot;q, &phi;(n) = (p &minus; 1)(q &minus; 1), and that value is what lets you derive the private exponent from the public one. Euler&rsquo;s theorem &mdash; a<sup>&phi;(n)</sup> &equiv; 1 (mod n) for coprime a &mdash; is the engine underneath. Getting an intuition for &phi; is getting an intuition for public-key crypto.</p>
+
+            <a class="backlink" href="index.html#journal">&larr; Back to all posts</a>
+        </article>
+    </main>
+
+    <div id="footer" class="text-center">
+        <div class="container">
+            <div class="socials-media text-center">
+                <ul class="list-unstyled">
+                    <li><a href="twitter.html"><em class="bi bi-twitter"></em></a></li>
+                    <li><a href="instagram.html"><em class="bi bi-instagram"></em></a></li>
+                    <li><a href="linkedin.html"><em class="bi bi-linkedin"></em></a></li>
+                    <li><a href="github.html"><em class="bi bi-github"></em></a></li>
+                </ul>
+            </div>
+            <p>&copy; Hamood AlSalmani</p>
+        </div>
+    </div>
+
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><em class="bi bi-arrow-up-short"></em></a>
+    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/main.js"></script>
+</body>
+
+</html>

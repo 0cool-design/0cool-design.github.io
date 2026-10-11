@@ -150,12 +150,11 @@
                     </div>
                     <div class="col-lg-7">
                         <div class="about-descr">
-                            <p class="p-heading" style="color:aqua;">Security researcher &amp; hardware hacker from Muscat, Oman.</p>
+                            <p class="p-heading" style="color:aqua;">Security researcher &amp; hardware hacker.</p>
                             <p class="separator" style="color:#d2d6d7; max-width:100%;">
                                 I break and build things across the stack &mdash; from web and binary exploitation
-                                to firmware and radios. I&rsquo;ve published proof-of-concepts for real CVEs
-                                (Pentaho auth bypass, PHP 8.1.0-dev RCE), tinker with BadUSB, ESP8266/ESP32,
-                                drone-ID and hardware glitching, and spend my spare cycles on cryptography,
+                                to firmware and radios. I write exploit proof-of-concepts, tinker with
+                                microcontrollers and wireless, and spend my spare cycles on cryptography,
                                 number theory, and CTFs.
                             </p>
                             <ul style="color:#d2d6d7; line-height:30px; list-style:none; padding:0; margin-top:10px;">
@@ -217,10 +216,11 @@
                             <div class="journal-info">
                                 <div class="journal-txt">
                                     <em class="bi bi-eye" style="font-size:34px; color:aqua;"></em>
-                                    <h4><a href="https://github.com/0cool-design/stereogram-analyzer" target="_blank" rel="noopener">Stereogram Analyzer</a></h4>
+                                    <h4><a href="blog-stereogram.html">Stereogram Analyzer</a></h4>
                                     <p>Recovering hidden depth maps and 3D point clouds from autostereograms
                                        (Magic Eye images) &mdash; period estimation, block-matching depth, and a
                                        live in-browser viewer.</p>
+                                    <p><a href="blog-stereogram.html">Read &rarr;</a> &nbsp;&middot;&nbsp; <a href="https://github.com/0cool-design/stereogram-analyzer" target="_blank" rel="noopener">Repo</a></p>
                                 </div>
                             </div>
                         </div>
@@ -229,9 +229,10 @@
                             <div class="journal-info">
                                 <div class="journal-txt">
                                     <em class="bi bi-box" style="font-size:34px; color:aqua;"></em>
-                                    <h4><a href="https://github.com/0cool-design/gyroid" target="_blank" rel="noopener">Gyroid</a></h4>
+                                    <h4><a href="blog-gyroid.html">Gyroid</a></h4>
                                     <p>Generating the gyroid &mdash; a triply-periodic minimal surface with zero
                                        mean curvature that tiles space infinitely without self-intersecting.</p>
+                                    <p><a href="blog-gyroid.html">Read &rarr;</a> &nbsp;&middot;&nbsp; <a href="https://github.com/0cool-design/gyroid" target="_blank" rel="noopener">Repo</a></p>
                                 </div>
                             </div>
                         </div>
@@ -240,9 +241,10 @@
                             <div class="journal-info">
                                 <div class="journal-txt">
                                     <em class="bi bi-infinity" style="font-size:34px; color:aqua;"></em>
-                                    <h4><a href="https://github.com/0cool-design/Pi_BIG-O" target="_blank" rel="noopener">&pi; &amp; Big-O</a></h4>
+                                    <h4><a href="blog-pi-bigo.html">&pi; &amp; Big-O</a></h4>
                                     <p>Computing &pi; from the Leibniz series while streaming the running
                                        time-complexity live &mdash; a hands-on playground for Big-O intuition.</p>
+                                    <p><a href="blog-pi-bigo.html">Read &rarr;</a> &nbsp;&middot;&nbsp; <a href="https://github.com/0cool-design/Pi_BIG-O" target="_blank" rel="noopener">Repo</a></p>
                                 </div>
                             </div>
                         </div>
@@ -251,9 +253,10 @@
                             <div class="journal-info">
                                 <div class="journal-txt">
                                     <em class="bi bi-key" style="font-size:34px; color:aqua;"></em>
-                                    <h4><a href="https://github.com/0cool-design/Totient" target="_blank" rel="noopener">Euler's Totient</a></h4>
+                                    <h4><a href="blog-totient.html">Euler's Totient</a></h4>
                                     <p>Exploring Euler's totient function &phi;(n) &mdash; the number-theory
                                        backbone behind RSA key generation and modular arithmetic.</p>
+                                    <p><a href="blog-totient.html">Read &rarr;</a> &nbsp;&middot;&nbsp; <a href="https://github.com/0cool-design/Totient" target="_blank" rel="noopener">Repo</a></p>
                                 </div>
                             </div>
                         </div>
@@ -262,9 +265,10 @@
                             <div class="journal-info">
                                 <div class="journal-txt">
                                     <em class="bi bi-flag" style="font-size:34px; color:aqua;"></em>
-                                    <h4><a href="https://github.com/0cool-design/WriteUps" target="_blank" rel="noopener">CTF Write-ups</a></h4>
+                                    <h4><a href="blog-writeups.html">CTF Write-ups</a></h4>
                                     <p>Solutions and notes from capture-the-flag challenges &mdash; web, binary,
                                        crypto, and forensics.</p>
+                                    <p><a href="blog-writeups.html">Read &rarr;</a> &nbsp;&middot;&nbsp; <a href="https://github.com/0cool-design/WriteUps" target="_blank" rel="noopener">Repo</a></p>
                                 </div>
                             </div>
                         </div>
@@ -316,35 +320,60 @@
                         </div>
                     </div>
 
-                    <!-- Upcoming posts -->
+                    <!-- Posts -->
                     <div class="row">
 
                         <div class="col-lg-4 col-md-6">
                             <div class="journal-info">
-                                <a href="soon.html"><img src="assets/img/blog-post-1.jpg" class="img-responsive" alt="img" width="720" height="400"></a>
                                 <div class="journal-txt">
-                                    <h4><a href="soon.html">How I Made a Wardriving RC Car</a></h4>
-                                    <p class="separator">Coming soon 🚗</p>
+                                    <ul class="post-tags"><li>Computer Vision</li><li>Python</li></ul>
+                                    <h4><a href="blog-stereogram.html">Seeing Through Magic Eye</a></h4>
+                                    <p class="excerpt">Recovering the hidden 3D surface encoded inside single-image autostereograms &mdash; and a live in-browser port.</p>
+                                    <p><a href="blog-stereogram.html">Read &rarr;</a> &nbsp;&middot;&nbsp; <a class="repo-link" href="https://github.com/0cool-design/stereogram-analyzer" target="_blank" rel="noopener">Repo</a></p>
                                 </div>
                             </div>
                         </div>
 
                         <div class="col-lg-4 col-md-6">
                             <div class="journal-info">
-                                <a href="soon.html"><img src="assets/img/blog-post-2.jpg" class="img-responsive" alt="img" width="720" height="400"></a>
                                 <div class="journal-txt">
-                                    <h4><a href="soon.html">Detect WiFi Deauth Attacks</a></h4>
-                                    <p class="separator">Coming soon &middot; using ESP8266</p>
+                                    <ul class="post-tags"><li>Geometry</li><li>Math</li></ul>
+                                    <h4><a href="blog-gyroid.html">Rendering the Gyroid</a></h4>
+                                    <p class="excerpt">One implicit equation plus marching cubes gives an infinite minimal surface that never intersects itself.</p>
+                                    <p><a href="blog-gyroid.html">Read &rarr;</a> &nbsp;&middot;&nbsp; <a class="repo-link" href="https://github.com/0cool-design/gyroid" target="_blank" rel="noopener">Repo</a></p>
                                 </div>
                             </div>
                         </div>
 
                         <div class="col-lg-4 col-md-6">
                             <div class="journal-info">
-                                <a href="soon.html"><img src="assets/img/blog-post-3.jpg" class="img-responsive" alt="img" width="720" height="400"></a>
                                 <div class="journal-txt">
-                                    <h4><a href="soon.html">Infrared Hacking</a></h4>
-                                    <p class="separator">Coming soon &middot; with Arduino Uno</p>
+                                    <ul class="post-tags"><li>Algorithms</li><li>Big-O</li></ul>
+                                    <h4><a href="blog-pi-bigo.html">Watching Big-O Happen</a></h4>
+                                    <p class="excerpt">Computing &pi; the slow way and plotting its runtime live, so you can see linear time complexity emerge.</p>
+                                    <p><a href="blog-pi-bigo.html">Read &rarr;</a> &nbsp;&middot;&nbsp; <a class="repo-link" href="https://github.com/0cool-design/Pi_BIG-O" target="_blank" rel="noopener">Repo</a></p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-4 col-md-6">
+                            <div class="journal-info">
+                                <div class="journal-txt">
+                                    <ul class="post-tags"><li>Number Theory</li><li>Crypto</li></ul>
+                                    <h4><a href="blog-totient.html">The Shape of Euler&rsquo;s Totient</a></h4>
+                                    <p class="excerpt">Computing &phi;(n) and plotting it &mdash; where scattered points draw the structure behind RSA.</p>
+                                    <p><a href="blog-totient.html">Read &rarr;</a> &nbsp;&middot;&nbsp; <a class="repo-link" href="https://github.com/0cool-design/Totient" target="_blank" rel="noopener">Repo</a></p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-4 col-md-6">
+                            <div class="journal-info">
+                                <div class="journal-txt">
+                                    <ul class="post-tags"><li>CTF</li><li>Write-ups</li></ul>
+                                    <h4><a href="blog-writeups.html">CTF Write-ups</a></h4>
+                                    <p class="excerpt">Solutions and notes from capture-the-flag challenges &mdash; the approach, the trick, and the solve script.</p>
+                                    <p><a href="blog-writeups.html">Read &rarr;</a> &nbsp;&middot;&nbsp; <a class="repo-link" href="https://github.com/0cool-design/WriteUps" target="_blank" rel="noopener">Repo</a></p>
                                 </div>
                             </div>
                         </div>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Seeing Through Magic Eye &mdash; 0cool</title>
+    <meta content="Recovering the hidden 3D surface encoded inside single-image autostereograms." name="description">
+
+    <link rel="apple-touch-icon" sizes="144x144" href="assets/img/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32x32.png">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,300i,400,400i,500,500i,600,600i,700,700i|Playfair+Display:400,400i,500,500i,600,600i,700,700i,900,900i" rel="stylesheet">
+    <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="assets/css/style.css" rel="stylesheet">
+    <link href="assets/css/blog.css" rel="stylesheet">
+</head>
+
+<body>
+    <header id="header" class="fixed-top">
+        <div class="container d-flex align-items-center justify-content-between">
+            <h1 class="logo"><a href="index.html" style="font-family:HypersTechno; color:aqua;">0CO0L</a></h1>
+            <nav id="navbar" class="navbar">
+                <ul>
+                    <li><a class="nav-link" href="index.html#hero">Home</a></li>
+                    <li><a class="nav-link" href="index.html#about">About</a></li>
+                    <li><a class="nav-link" href="index.html#research">Research</a></li>
+                    <li><a class="nav-link" href="index.html#journal">Blog</a></li>
+                    <li><a class="nav-link" href="index.html#contact">Contact</a></li>
+                </ul>
+                <em class="bi bi-list mobile-nav-toggle"></em>
+            </nav>
+        </div>
+    </header>
+
+    <main id="main">
+        <article class="post">
+
+            <p class="kicker">Computer Vision &middot; Project</p>
+            <h1>Seeing Through Magic Eye</h1>
+            <p class="lead">Recovering the hidden 3D surface encoded inside single-image autostereograms &mdash; the &ldquo;Magic Eye&rdquo; posters you had to cross your eyes at.</p>
+
+            <ul class="tags">
+                <li>Computer Vision</li>
+                <li>Autostereograms</li>
+                <li>Depth Maps</li>
+                <li>Python</li>
+                <li>JavaScript</li>
+                <li>three.js</li>
+            </ul>
+
+            <div class="meta">
+                <span>By <em>0cool</em></span>
+                <span>Project write-up</span>
+                <span>Repo: <a href="https://github.com/0cool-design/stereogram-analyzer" target="_blank" rel="noopener">stereogram-analyzer</a></span>
+                <span>Live: <a href="https://0cool-design.github.io/stereogram-analyzer/" target="_blank" rel="noopener">try it &rarr;</a></span>
+            </div>
+
+            <h2>What is an autostereogram?</h2>
+            <p>An autostereogram is a single flat image that hides a 3D shape. It works by taking a narrow pattern and repeating it horizontally &mdash; but the repeat width is nudged slightly from column to column. When your eyes diverge (or cross) so that two neighbouring copies of the pattern fuse into one, those tiny shifts read as <strong>depth</strong>, and a 3D surface pops out of the noise.</p>
+            <p>That means the depth information is really there in the pixels, just encoded as local changes in the repeating period. If a human visual system can decode it, so can a computer &mdash; which is exactly what this tool does.</p>
+
+            <h2>The pipeline</h2>
+            <p>Given one autostereogram, the analyzer runs four stages:</p>
+            <ul>
+                <li><strong>Period estimation</strong> &mdash; measure the dominant horizontal repeat width (via autocorrelation), the baseline from which all depth is read.</li>
+                <li><strong>Base texture recovery</strong> &mdash; reconstruct the single pattern tile that was tiled across the image.</li>
+                <li><strong>Depth map</strong> &mdash; block-match each region against its shifted neighbour; the local disparity (how far the period drifts from the baseline) becomes the depth at that pixel.</li>
+                <li><strong>3D surface</strong> &mdash; lift the depth map into a mesh / point cloud, render it, and export to PNG or a Wavefront <code>.obj</code>.</li>
+            </ul>
+
+            <h2>Two ways to run it</h2>
+            <p>The original is a <strong>PyQt5 desktop app</strong> in Python (NumPy, Pillow, Matplotlib). I then ported the whole pipeline to <strong>JavaScript</strong> so it runs as a <strong>live web app</strong> &mdash; 100% client-side, images never leave your machine. The heavy analysis runs in a Web Worker so the UI stays responsive, and the recovered surface is rendered in 3D with <a href="https://threejs.org/" target="_blank" rel="noopener">three.js</a>. A built-in random-dot stereogram (SIRDS) generator is included so you can try it with zero setup.</p>
+            <pre># run the live web app locally
+cd docs
+python -m http.server 8000
+# then open http://localhost:8000</pre>
+            <p>Open the <a href="https://0cool-design.github.io/stereogram-analyzer/" target="_blank" rel="noopener">live version</a>: generate a sample (or drop in your own stereogram) &rarr; tweak parameters &rarr; <strong>Analyze</strong> &rarr; inspect the base texture, depth map, and interactive 3D surface &rarr; export a PNG or <code>.obj</code> point cloud.</p>
+
+            <a class="backlink" href="index.html#journal">&larr; Back to all posts</a>
+        </article>
+    </main>
+
+    <div id="footer" class="text-center">
+        <div class="container">
+            <div class="socials-media text-center">
+                <ul class="list-unstyled">
+                    <li><a href="twitter.html"><em class="bi bi-twitter"></em></a></li>
+                    <li><a href="instagram.html"><em class="bi bi-instagram"></em></a></li>
+                    <li><a href="linkedin.html"><em class="bi bi-linkedin"></em></a></li>
+                    <li><a href="github.html"><em class="bi bi-github"></em></a></li>
+                </ul>
+            </div>
+            <p>&copy; Hamood AlSalmani</p>
+        </div>
+    </div>
+
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><em class="bi bi-arrow-up-short"></em></a>
+    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/main.js"></script>
+</body>
+
+</html>
